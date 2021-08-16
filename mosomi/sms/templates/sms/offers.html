@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+      <link rel="icon" href="{% static 'images/robermss.ico'%}" type='image/x-icon'>
+    <title>Roberms</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'digilab/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'digilab/css/style.css' %}">
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" class="text-black-50">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="{%url 'sms:sms-home'%}" style="color: green" >Roberms<span></span></a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+
+              {% if user.is_authenticated %}
+
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span style="color: green">Home</span></a></li>
+{#            <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>#}
+
+{#	          <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>#}
+	          <!-- <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li> -->
+	          <!-- <li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Testimony</span></a></li> -->
+	          <!-- <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li> -->
+{#	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span >Contact</span></a></li>#}
+            <li class="nav-item"><a href="{%url 'sms:apps'%}" class="nav-link"><span style="color: green">Dashboard</span></a></li>
+            <li class="nav-item login"><a href="{%url 'sms:logout'%}" class="nav-link" style="color: green"><span>Logout</span></a></li>
+
+            <!-- unautenticated User -->
+
+            {% else %}
+
+            <li class="nav-item"><a href="#home-section" class="nav-link"><span style="color: green">Home</span></a></li>
+            <li class="nav-item"><a href="{%url 'sms:register'%}" class="nav-link"><span style="color: green">Sign up</span></a></li>
+            <li class="nav-item login"><a href="{%url 'sms:login'%}" class="nav-link"><span style="color: green">Login</span></a></li>
+              {%endif%}
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero">
+	  	<h3 class="vr" style="color: black">Welcome to Roberms </h3>
+    </section>
+
+    <section class="ftco-section testimony-section" id="testimony-section" style="background-color:white;">
+      <div class="container">
+        <div class="row justify-content-center pb-3">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2 class="mb-4" style="color: black">Helping businesses during covid-19</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate justify-content-center">
+          <div class="col-md-12">
+              <h4>Overview </h4>
+              <p style="font-size: 18px; color: black">Covid 19 has made many businesses and shops closed or operating at a bare minimal. We will talk about how Roberms can help such businesses serve their customers during such periods . They include restaurants, churches,  schools and many more</p>
+
+              <h4>Restaurants</h4>
+              <p style="font-size: 18px; color: black">Roberms has come up with ways of ensuring restaurants and clubs identify, and get a way to reach  their most frequent customers. This is through their mpesa till numbers where the club can get the names and phone numbers of their clients. Periodically engage them through messages to do online delivery and inform them on offers during Covid period.</p>
+
+              <h4>Churches </h4>
+              <p style="font-size: 18px; color: black">Churches needs to communicate to their members regularly. You can collect the phone numbers of members and store them in our platform. Then when you want to broadcast anything, share the message. For instance, many churches are going live through youtube and facebook to present their sermons and anything they have. They can send links just before doing that to ensure members catch up with the events.</p>
+
+              <h4>Schools</h4>
+              <p style="font-size: 18px; color: black">With the crisis, teachers can prepare assignments and send links to the parent’s phone numbers to enable students access the learning materials posted. Some assignments can also be sent as texts and we will ensure they get to the indented users.</p>
+
+              <h4>Shops </h4>
+              <p style="font-size: 18px; color: black">Shops can utilize our sms feature to tell customers on new items than can be delivered to the clients. For instance, many businesses have shifted their lines to help in curbing the spread of covid 19. They will inform clients what they can offer i.e masks, sanitizers and help.</p>
+
+              <p style="font-size: 18px; color: black">Above all, everybody can help spread the message of hope and how to curb the spread through messages. </p>
+              <p style="font-size: 18px; color: black" >Wash your hands regularly.</p>
+              <p style="font-size: 18px; color: black">Stay home </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static 'digilab/js/jquery.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'digilab/js/popper.min.js' %}"></script>
+  <script src="{% static 'digilab/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'digilab/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'digilab/js/aos.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'digilab/js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'digilab/js/google-map.js' %}"></script>
+  <script src="{% static 'digilab/js/main.js' %}"></script>
+
+  </body>
+</html>

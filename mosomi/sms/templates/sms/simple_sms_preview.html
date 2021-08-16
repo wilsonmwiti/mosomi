@@ -1,0 +1,45 @@
+{% extends 'layouts/new_base.html'%}
+{% load static %}
+
+{% block additional_styles %}
+{#<link rel="stylesheet" href="{% static 'css/custom.css' %}">#}
+    <style>
+    table_outer{ height: 5em; overflow: auto; }
+    </style>
+{% endblock %}
+
+{% block content%}
+    <div class="tile col-sm-12">
+<div class="row">
+          <div class="col-sm-12 table-border">
+              <table class="table table-hover table-bordered" id="sampleTable">
+              <thead>
+              <tr>
+                  <th>Phone Number</th>
+                  <th>Message</th>
+              </tr>
+              </thead>
+                  <tbody>
+                  {% for a, b in data.items %}
+                      {% if forloop.counter < 3 %}
+                          <tr>
+                              <td><label>{{ a }}</label></td>
+                              <td><p>{{ b }}</p></td>
+                          </tr>
+                      {% endif %}
+                      {% endfor %}
+              </table>
+          </div>
+</div>
+    <div class="row">
+        <form action="{% url 'sms:send' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+              </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

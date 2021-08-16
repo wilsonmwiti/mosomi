@@ -1,0 +1,42 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-12">
+    <div class="tile">
+        <div class="col-sm-6">
+            <div class="tile-title">
+                <strong>Update Contact</strong>
+            </div>
+        </div>
+
+        <div class="tile-body">
+            <form action="{% url 'sms:update_group' group.id %}" method="post">
+                {% csrf_token %}
+                <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Group Name</label>
+                      <input class="form-control" name="name" value="{{ group.name }}" type="text" placeholder="Enter Group Name">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update Contact</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

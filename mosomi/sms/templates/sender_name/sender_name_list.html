@@ -1,0 +1,53 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block additional_meta %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="tile">
+    <div class="tile-title">
+        Sender Names
+        <a href="{% url 'sms:new_application' %}" class="btn btn-sm btn-outline-primary float-right">New Application</a>
+        <br>
+    </div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Sender Name</th>
+                    <th>Application Date</th>
+                    <th>Application Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td>
+                        <a href="{% url 'sms:application_contacts' application.id %}">{{ application.sender_name }}</a>
+                    </td>
+                    <td>{{ application.application_date|date:'Y-m-d' }}</td>
+                    <td>
+                        {% if application.application_status == True %}
+                            Approved
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" href="{% url 'sms:show_pdf' application.id %}">Download Application</a>
+                </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+{#<link rel="stylesheet" href="{% static 'css/custom.css' %}">#}
+    <style>
+    table_outer{ height: 5em; overflow: auto; }
+    </style>
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+
+    <div class="tile col-sm-12">
+{#    <div class="tile-title">#}
+{#        {% if messages %}#}
+{#    {% for message in messages %}#}
+{#        <div class="alert alert-dismissible {% if message.tags == error %} alert-danger {% else %} alert-primary {% endif %}">#}
+{#            <button class="close" type="button" data-dismiss="alert">×</button><strong>Oh snap!</strong><a class="alert-link" href="#">{{ message }}</a>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#    {% endif %}#}
+{#    </div>#}
+<div class="row">
+          <div class="col-sm-12 table-border">
+              <table class="table table-hover table-bordered" id="sampleTable">
+              <thead>
+              <tr>
+                  <th>Phone Number</th>
+                  <th>Message</th>
+              </tr>
+              </thead>
+                  <tbody>
+                  {% for a in data %}
+                      {% if forloop.counter < 3 %}
+                          <tr>
+                              <td><label>{{ a.phone_number }}</label></td>
+                              <td><p>{{ a.message }}</p></td>
+                          </tr>
+                      {% endif %}
+                      {% endfor %}
+                  </tbody>
+              </table>
+
+          <form action="{% url 'sms:confirm' %}" method="post">
+                  {% csrf_token %}
+                  {% for a in data %}
+                      <div hidden="hidden">
+                      <tr hidden>
+                      <td><input class="form-control" name="phone_numbers[]" readonly value="{{ a.phone_number }}"></td>
+                      <td><input class="form-control" name="messages[]" readonly value="{{ a.message }}"></td>
+                      </tr>
+                      </div>
+                      {% endfor %}
+                  <div>
+                      <button type="submit" class="btn btn-primary pull-right">Confirm</button>
+                  </div>
+                  </form>
+          </div>
+      </div>
+    </div>
+{% endblock %}
+{% block additional_scripts %}
+    <script>
+    {#$('table tbody > tr').slice(1,7).hide();#}
+    </script>
+{% endblock %}

@@ -1,0 +1,210 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+        <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <section class="invoice">
+              <div class="row mb-4">
+                <div class="col-4">
+                  <h2 class="page-header"><img alt="Logo" src="{% static 'images/WhatsApp Image 2019-10-11 at 11.01.09.jpeg' %}" height="110px"></h2>
+                    <h3 style="margin-top: -13px !important; color: #1F494A; font-size: 11px !important;">Discovering your potential</h3>
+                </div>
+                  <div class="col-4">
+                      <p style="font-size: 14px !important; color: #1F494A;">Roberms Holdings Ltd</p>
+                      <p style="color: #1F494A; margin-top: -15px !important; font-size: 14px !important;">P.O.BOX 103075 NAIROBI</p>
+                      <p style="color: #1F494A; margin-top: -15px !important; font-size: 14px !important;">Lenana Road, North Star Building</p>
+                      <p style="color: #1F494A; margin-top: -15px !important; font-size: 14px !important;">tel : 0725029795</p>
+                      <p style="color: #1F494A; margin-top: -15px !important; font-size: 14px !important;">email : admin@roberms.com</p>
+                      <p style="color: #1F494A; margin-top: -15px !important; font-size: 14px !important;">website : www.roberms.co.ke</p>
+                  </div>
+                <div class="col-3">
+                  <h2 class="text-left" style="color: #1F494A; font-size: 35px">INVOICE</h2>
+                </div>
+              </div>
+              <div class="row invoice-info" style="">
+                  <div class="col-sm-8">
+                      <div class="card col-sm-6 border-dark">
+                          <div class="card-body">
+                          <h5>BILL TO:</h5>
+                          <p style="font-weight: bold">{{ client.company_name }}</p>
+                          <p style="font-weight: bold">{{ client.address }},</p>
+                          <p style="font-weight: bold">{{ client.location }}</p>
+                          <p style="font-weight: bold">Tel: {{ client.phone_number }}</p>
+                              {% if client.kra_pin != None %}
+                                  <p style="font-weight: bold">KRA PIN: {{ client.kra_pin }}</p>
+                              {% endif %}
+                      </div>
+                      </div>
+                  </div>
+                 <div class="col-sm-4">
+                     <table class="table table-bordered">
+                         <thead>
+
+                         </thead>
+                         <tbody>
+                         <tr>
+                             <td>INVOICE DATE: </td>
+                             <td>{{ invoice.invoice_date }}</td>
+                         </tr>
+                         <tr>
+                             <td>INVOICE NO:</td>
+                             <td>{{ invoice.invoice_number }} </td>
+
+                         </tr>
+                         <tr>
+                             <td>CUSTOMER NO:</td>
+                             <td> {{ client.client_number }}</td>
+                         </tr>
+                         <tr>
+                             <td>PIN NUMBER:</td>
+                             <td>P051518145J</td>
+                         </tr>
+{#                         <tr>#}
+{#                             <td>CUSTOMER PO NUMBER:</td>#}
+{#                             <td>{{ client.address }}</td>#}
+{#                         </tr>#}
+{#                         <tr>#}
+{#                             <td>#}
+{#                                 CURRENCY:#}
+{#                             </td>#}
+{#                             <td>Ksh</td>#}
+{#                         </tr>#}
+                         </tbody>
+                     </table>
+                     <br>
+                 </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 table-responsive table-hover">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Product/Service</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for service in services %}
+                      <tr>
+                        <td>{{ service.service }}</td>
+                        <td>{{ service.quantity }}</td>
+                        <td>{{ service.unit_price|floatformat:"2" }}</td>
+                        <td>{{ service|get_services_amount|floatformat:"2" }}</td>
+                      </tr>
+                    {% endfor %}
+                    <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                         <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                         <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                        <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                        <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6>Payment Terms:</h6>
+                            <p>IMMEDIATE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h6>Subtotal:</h6>
+                    <h6>Discount: </h6>
+                    <h6>Total: </h6>
+                    <h6>VAT {{ invoice.vat }}%:</h6>
+                    <h5>Amount Payable:</h5>
+                </div>
+                <div class="col-sm-3">
+                    <h6 style="text-align: right">{{ total|floatformat:"2" }}</h6>
+                    <h6 style="text-align: right">{{ discount|floatformat:"2" }}</h6>
+                    <h6 style="text-align: right">{{ sub_total|floatformat:"2" }}</h6>
+                    <h6 style="text-align: right">{{ vat|floatformat:"2" }}</h6>
+                    <h5 style="text-align: right">{{ new_total|floatformat:"2" }}</h5>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-header" style="height: 16px !important; background-color: #1F494A;; color: white">
+                            <h6 style="margin-top: -6px !important;">Special Notes And Instructions</h6>
+                        </div>
+                        <div class="card-body">
+                            <h4>Make Payment To</h4>
+                            <h5>NCBA Bank </h5>
+                            <h5>Kilimani Branch</h5>
+                            <h4>A/C 1002422111</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 100px !important;">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-6">
+                    <h6>Thank you for your business</h6>
+                    <p>For any inquiry about this invoice call 0725029795</p>
+                    <hr>
+                </div>
+                 <div class="col-sm-3">
+
+                </div>
+            </div>
+              <div class="row d-print-none mt-2">
+                <div class="col-12 text-right"><a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Print</a></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

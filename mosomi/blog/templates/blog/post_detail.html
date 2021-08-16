@@ -1,0 +1,34 @@
+{% extends 'sms/base.html'%}
+
+{% block content%}
+
+
+
+
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{post.author.profile.image.url}}" alt="">
+<div class="media-body">
+<div class="article-metadata">
+  <a class="mr-2" href="#">{{ object.author }}</a>
+  <a class="mr-2" href="#">{{ object.author.first_name }}</a>
+  <small class="text-muted">{{ object.date_posted|date:"d M, Y, P" }}</small>
+    <a class="mr-2" href="#">{{ object.author.email }}</a>
+</div>
+
+<h2 class="article-title"> {{ object.title }}</h2>
+<p class="article-content">{{ object.content }}</p>
+</div>
+<div>
+  {% if object.author == user %}
+    <a class="btn btn secondary btn-sm mb-1 mt-1 "href="{% url 'post-update' object.id %}">Update</a>
+      <a class="btn btn danger btn-sm mb-1 mt-1 "href="{% url 'post-delete' object.id %}">Delete</a>
+
+  {% endif %}
+
+</div>
+</article>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+
+    <div class="row">
+           <div class="col-lg-6">
+           <div class="bs-component">
+           <div class="card border-primary">
+               <div class="card-header">
+                   <h5 class="mb-3" id="buttons">Select Contact Groups</h5>
+               </div>
+
+               <div class="card-body">
+                   <form action="{% url 'sms:choose_contact_groups' %}" method="post">
+                       {% csrf_token %}
+                       <div class="form-group">
+                           {% for group in contact_groups %}
+                               <div class="form-check">
+                                   <label class="form-check-label">
+                                       <input class="form-check-input" type="radio" name="group_ids[]" value="{{ group.id }}" checked="">{{ group.name }}
+                                   </label>
+                               </div>
+                           {% endfor %}
+                       </div>
+
+                   <div class="form-group" hidden>
+                               <input type="text" name="message" value="{{ message }}">
+                   </div>
+                   <button type="submit" class="btn btn-primary">Confirm</button>
+                   </form>
+               </div>
+
+           </div>
+           </div>
+       </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'adda/layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Challenge Ideas</h3>
+              <p><a class="btn btn-primary icon-btn" href="{% url 'adda:create_idea' challenge.id %}"><i class="fa fa-plus"></i>Add Challenge Idea</a></p>
+            </div>
+            <div class="tile-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+                    </div>
+                </div>
+            </div>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>Idea Title</th>
+                        <th>Phone Number</th>
+                        <th>Date</th>
+                        <th>Challenge Creator</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for idea in ideas %}
+                    <tr>
+                    <td><a href="{% url 'adda:comments' idea.id %}">{{ idea.title }}</a></td>
+                    <td>{{ idea.phone_number }}</td>
+                    <td>{{ idea.date }}</td>
+                    <td>{{ idea.challenge.adda_user.first_name }} {{ idea.challenge.adda_user.last_name }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-success {% if idea.challenge.adda_user.id != adda_user.id %}" disabled {% endif %} href=""><i class="fa fa-2x fa-edit"></i></a>
+{#                                <a class="btn btn-danger disabled" href=""><i class="fa fa-lg fa-trash"></i></a>#}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

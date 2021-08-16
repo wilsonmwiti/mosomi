@@ -1,0 +1,113 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+
+    <div class="row">
+    <div class="col-md-8">
+        <div class="tile">
+        <div class="tile-title-w-btn">
+              <h3 class="title">Messages</h3>
+              <p><a class="btn btn-primary icon-btn" target="_blank" href="{% url 'sms:generate_sms_report' track_code %}"><i class="fa fa-plus"></i>Download Report</a></p>
+            </div>
+
+            <div class="tile-body table-responsive">
+                <table class="table table-hover table-bordered" id="MyTable">
+                <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Phone Number</th>
+                    <th>Delivery Status</th>
+                    <th>Date Sent</th>
+                </tr>
+                </thead>
+
+            </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="tile">
+            <div class="tile-body">
+                <h3 class="tile-title">Message Status Report</h3>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <canvas class="embed-responsive-item" id="pieChartReport"></canvas>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+var pdata = [
+      	{
+      		value: {{ unsent_messages }},
+      		color:"#F7464A",
+      		highlight: "#FF5A5E",
+      		label: "Messages Not Sent Due To An Error"
+      	},
+        {
+      		value: {{ pending_delivery_status }},
+      		color: "#fcff00",
+      		highlight: "#fcff42",
+      		label: "Status Pending"
+      	},
+      	{
+      		value: {{ sent_messages }},
+      		color: "#46BFBD",
+      		highlight: "#5AD3D1",
+      		label: "Delivered Messages"
+      	},
+        {
+      		value: {{ airtel_messages }},
+      		color: "#1bbf00",
+      		highlight: "#46bf2e",
+      		label: "Airtel Messages"
+      	},
+
+      ];
+
+    var ctxp = $("#pieChartReport").get(0).getContext("2d");
+    var pieChart = new Chart(ctxp).Pie(pdata);
+</script>
+
+    <script>
+    $(document).ready(function() {
+    var oTable = $('#MyTable').DataTable({
+        // ...
+        "order": [[ 3, "desc" ]],
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "{% url 'sms:order_report_json' track_code  %}"
+        },
+
+    });
+
+});
+</script>
+{% endblock %}

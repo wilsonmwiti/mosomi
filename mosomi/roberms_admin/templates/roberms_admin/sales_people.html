@@ -1,0 +1,73 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+{% load sales_person_filters %}
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+        <div class="tile-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Sales People</h3>
+            </div>
+            <div class="col-sm-6">
+                <a href="{% url 'roberms_admin:add_sales_person' %}" class="btn btn-primary pull-right">Add Sales Person</a>
+            </div>
+        </div>
+        <hr>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Clients Count</th>
+                    <th>Unpaid Amount</th>
+                    <th>Commission</th>
+                    <th>Date Joined</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for person in sales_people %}
+                <tr>
+                    <td><a href="{% url 'roberms_admin:sales_person_clients' person.id %}">{{ person.first_name }} {{ person.last_name }}</a></td>
+                    <td>{{ person.phone_number }}</td>
+                    <td>{{ person.customers|length }}</td>
+                    <td>{{ person|commission_count }}</td>
+                    <td>{{ person.commission }}%</td>
+                    <td>{{ person.created_at|date:'Y-m-d' }}</td>
+                    <td>
+                        <a title="Delete" href="{% url 'roberms_admin:delete_sales_person' person.id %}" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                        <a href="{% url 'roberms_admin:activate_deactivate' person.id %}"
+                           {% if person.is_active == True %}
+                               class="btn btn-outline-danger btn-sm"
+                                title="De-activate"
+                           {% else %}
+                                class="btn btn-outline-primary btn-sm"
+                                title="Activate"
+                           {% endif %}
+                        ><i class="fa fa-check-square-o"></i></a>
+                        <a title="Assign Client" href="{% url 'roberms_admin:assign_client' person.id %}" class="btn btn-outline-primary btn-sm"><i class="fa fa-plus-square-o"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

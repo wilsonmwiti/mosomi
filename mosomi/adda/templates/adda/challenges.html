@@ -1,0 +1,61 @@
+{% extends 'adda/layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Challenges</h3>
+              <p><a class="btn btn-primary icon-btn" href="{% url 'adda:create_challenge' %}"><i class="fa fa-plus"></i>Add Challenge</a></p>
+            </div>
+            <div class="tile-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+                    </div>
+                </div>
+            </div>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>Challenge Title</th>
+                        <th>County</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Phone Number</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for challenge in challenges %}
+                    <tr>
+                    <td><a href="{% url 'adda:ideas' challenge.id %}">{{ challenge.title }}</a></td>
+                    <td>{{ challenge.county }}</td>
+                    <td>{{ challenge.date_start|date:'Y-m-d' }}</td>
+                    <td>{{ challenge.date_end|date:'Y-m-d' }}</td>
+                    <td>{{ challenge.phone_number }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-success {% if challenge.adda_user.id != adda_user.id %}" disabled {% endif %} href=""><i class="fa fa-2x fa-edit"></i></a>
+{#                                <a class="btn btn-danger disabled" href=""><i class="fa fa-lg fa-trash"></i></a>#}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

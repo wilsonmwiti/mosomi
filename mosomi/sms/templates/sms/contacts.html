@@ -1,0 +1,88 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+{% load filters %}
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Contact Groups</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Contact Groups</h3>
+              <p></p>
+              <p>
+                  {% if customer.id == 342 %}
+                      <a class="btn btn-primary icon-btn" href="{% url 'sms:st_ann_add_patient' %}"><i class="fa fa-plus"></i>Add Patient</a>
+                  {% endif %}
+                  <a class="btn btn-primary icon-btn" href="{% url 'sms:create_group' %}"><i class="fa fa-plus"></i>Add Group</a>
+              </p>
+            </div>
+            <div class="tile-body table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>Group Name</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Number Of Contacts</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for group in groups %}
+                    <tr>
+                        <td><a href="{% url 'sms:sample_datatable' group.id %}">{{ group.name }}</a></td>
+                        <td>{{ group.created_at|date:"Y-m-d" }}</td>
+                        <td>{{ group.updated_at|date:"Y-m-d" }}</td>
+                        <td>{{ group|contacts_count }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-outline-warning" href="{% url 'sms:update_group' group.id %}"><i class="fa fa-lg fa-edit"></i>Edit</a>
+                                <button class="btn btn-outline-danger" style="margin-left: 2px"  onclick="confirm({{ group.id }})"><i class="fa fa-lg fa-trash"></i>Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+    function confirm(group_id) {
+        Swal.fire({
+            title: 'You will loose all contacts under this group..',
+            {#confirmButtonText: `Confirm`,#}
+            showDenyButton: true,
+            showConfirmButton: false,
+            showCancelButton: true,
+            denyButtonText: `Confirm`,
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            {#Swal.fire('Saved!', '', 'success')#}
+            {#window.location.href = "/delete/group/"+group_id#}
+        } else if (result.isDenied) {
+            window.location.href = "/delete/group/"+group_id
+        }
+        })
+    }
+</script>
+{% endblock %}

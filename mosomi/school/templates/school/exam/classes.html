@@ -1,0 +1,54 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load school_filters %}
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Classes</h3>
+        </div>
+        <div class="col-sm-6">
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'School:add_class' %}">Add Class</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Form Name</th>
+                    <th>Streams</th>
+{#                    <th>Actions</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for class in classes %}
+                <tr>
+                    <td><a href="{% url 'School:exam_terms_by_year' year class.id %}">{{ class.name }}</a></td>
+                    <td>{{ class.id|class_streams }}</td>
+{#                    <td>#}
+{#                        <a href="{% url 'School:edit_class' class.id %}" class="btn btn-outline-primary">Edit</a>#}
+{#                        <a class="btn btn-outline-danger">Delete</a>#}
+{#                    </td>#}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

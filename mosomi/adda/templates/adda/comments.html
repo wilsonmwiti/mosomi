@@ -1,0 +1,59 @@
+{% extends 'adda/layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Idea Comments</h3>
+              <p><a class="btn btn-primary icon-btn" href="{% url 'adda:create_comment' idea.id %}"><i class="fa fa-plus"></i>Add Idea Comment</a></p>
+            </div>
+            <div class="tile-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+                    </div>
+                </div>
+            </div>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>Idea Title</th>
+                        <th>Phone Number</th>
+                        <th>Comment Date</th>
+                        <th>Vote</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+                    <tr>
+                    <td>{{ comment.idea.title }}</td>
+                    <td>{{ comment.phone_number }}</td>
+                    <td>{{ comment.date|date:"Y-m-d" }}</td>
+                    <td>{{ comment.vote }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-success {% if idea.challenge.adda_user.id != adda_user.id %}" disabled {% endif %} href=""><i class="fa fa-2x fa-edit"></i></a>
+{#                                <a class="btn btn-danger disabled" href=""><i class="fa fa-lg fa-trash"></i></a>#}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

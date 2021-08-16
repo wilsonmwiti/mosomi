@@ -1,0 +1,124 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Group Contacts</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Group Contacts</h3>
+              <p><a class="btn btn-primary icon-btn" href="{% url 'sms:create_group_contact' group.id %}"><i class="fa fa-plus"></i>Add Contact</a></p>
+            </div>
+            <div class="tile-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+{#                        <label>Search:#}
+{#                            <input id="myInputTextField" type="search" class="form-control form-control-sm" placeholder="" aria-controls="sampleTable">#}
+{#                        </label>#}
+                    </div>
+                </div>
+            </div>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>Contact Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.phone_number }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.created_at|date:"Y-m-d" }}</td>
+                        <td>
+                            {% if contact.is_active == True %}
+                                Active
+                            {% elif contact.is_active == False %}
+                                In-Active
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" href="{% url 'sms:update_contact' contact.id %}"><i class="fa fa-lg fa-edit"></i></a>
+                                <a class="btn btn-danger" href="{% url 'sms:delete_contact' contact.id %}"><i class="fa fa-lg fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+{#            {% if contacts.has_other_pages %}#}
+{#                <div class="row">#}
+{#                <div class="col-sm-6">#}
+{#                    <p>Showing <span class="text-success">{{ contacts.start_index }}</span> to <span class="text-success">{{ contacts.end_index }}</span> of <span class="text-success">{{ record_count }}</span> records</p>#}
+{#                </div>#}
+{##}
+{#                <div class="col-sm-6">#}
+{#                    <div class="table-responsive">#}
+{#                <ul class="pagination  float-right">#}
+{#                    {% if contacts.has_previous %}#}
+{#                        <li class="page-item"><a class="page-link" href="?page={{ contacts.previous_page_number }}">Previous</a></li>#}
+{#                    {% else %}#}
+{#                        <li class="page-item disabled"><a class="page-link"><span>Previous</span></a></li>#}
+{#                    {% endif %}#}
+{#                    {% for i in contacts.paginator.page_range %}#}
+{#                        {% if contacts.number == i %}#}
+{#                            <li class="page-item active"><a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>#}
+{#                        {% elif i < 10 %}#}
+{#                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                    {% if contacts.has_next %}#}
+{#                        <li class="page-item"><a class="page-link" href="?page={{ contacts.next_page_number }}">Next</a></li>#}
+{#                    {% else %}#}
+{#                        <li class="page-item disabled"><a class="page-link"><span>Next</span></a></li>#}
+{#                    {% endif %}#}
+{#                </ul>#}
+{#                </div>#}
+{#                </div>#}
+{#                </div>#}
+{#            {% endif %}#}
+
+{#            <br>#}
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+{#<script>#}
+{#oTable = $('#myTable').dataTable({#}
+{#    paging: false,#}
+{#    "bFilter": true,#}
+{#    "info": false,#}
+{#});#}
+{#$('#myInputTextField').keyup(function(){#}
+{#    oTable.fnFilter($(this).val());#}
+      {#oTable.search($(this).val()).draw() ;#}
+{#})#}
+{#</script>#}
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+        <div class="tile-title-w-btn">
+              <h3 class="title">SMS General Report</h3>
+{#              <p><a class="btn btn-primary icon-btn" target="_blank" href="{% url 'sms:generate_sms_report' track_code %}"><i class="fa fa-plus"></i>Download Report</a></p>#}
+            </div>
+
+            <div class="tile-body table-responsive">
+                <table class="table table-hover table-bordered" id="MyTable">
+                <thead>
+                <tr>
+                    <th>Phone Number</th>
+                    <th>Message</th>
+                    <th>Date Sent</th>
+                    <th>Delivery Status</th>
+
+                </tr>
+                </thead>
+
+            </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+    <script>
+        $(document).ready(function() {
+        var oTable = $('#MyTable').DataTable({
+            // ...
+            "order": [[ 3, "desc" ]],
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{% url 'sms:all_messages_json' %}"
+            },
+        });
+        });
+
+    </script>
+{% endblock %}
+
+

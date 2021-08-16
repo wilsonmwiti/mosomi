@@ -1,0 +1,94 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Create Contact</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+<div class="row">
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Add Group Contact</h3>
+            <div class="tile-body">
+              <form action="{% url 'sms:create_group_contact' group.id %}" method="post">
+                  {% csrf_token %}
+                <div class="form-group">
+                  <label class="control-label">Contact Name</label>
+                  <input class="form-control" name="name" type="text" placeholder="Enter Contact Name">
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Contact Phone Number</label>
+                  <input class="form-control" name="phone_number" type="text" placeholder="Contact Phone Number">
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Contact Email</label>
+                  <input class="form-control" name="email" type="text" placeholder="Contact Email">
+                </div>
+
+{#                <div class="form-group">#}
+{#                  <label class="control-label">Contact Name</label>#}
+{#                  <input class="form-control" name="name" type="text" placeholder="Enter Group Name">#}
+{#                </div>  #}
+                  <button class="btn btn-outline-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Create Contact</button>
+              </form>
+            </div>
+            <div class="tile-footer">
+            </div>
+          </div>
+        </div>
+
+ <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Import Contacts</h3>
+              <a href="../../../media/templates/import_contacts.xlsx" download="download" class="btn btm-sm btn-outline-primary pull-right">Download Template</a>
+            <div class="tile-body">
+                <form action="{% url 'sms:import_contacts' group.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <h6 class="text-danger">Make sure your file has the headings (name,phone_number,email) on the first row</h6>
+                        <label class="control-label">Choose a .csv or .xlsx file containing your contacts</label>
+                        <input class="form-control" name="my_file" type="file" required>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Import</button>
+                </form>
+            </div>
+          </div>
+
+     <div class="tile">
+            <h3 class="tile-title">Express Import Contacts</h3>
+              <a href="../../../media/templates/import_contacts.xlsx" download="download" class="btn btm-sm btn-outline-primary pull-right">Download Template</a>
+            <div class="tile-body">
+                <form action="{% url 'sms:express_import_contacts' group.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <h6 class="text-danger">Make sure your file has the headings (name,phone_number,email) on the first row</h6>
+                        <label class="control-label">Choose a .csv or .xlsx file containing your contacts</label>
+                        <input class="form-control" name="my_file" type="file" required>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Import</button>
+                </form>
+            </div>
+          </div>
+ </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

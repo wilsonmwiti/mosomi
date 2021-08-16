@@ -1,0 +1,54 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+
+    <div class="tile">
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Track Code</th>
+                    <th>Date</th>
+                    <th>Recipients</th>
+                    <th>Credit Used</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for code in track_codes %}
+                <tr>
+                    <td>
+                        <a href="{% url 'sms:report_details' code %}">{{ code }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

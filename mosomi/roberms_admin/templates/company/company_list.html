@@ -1,0 +1,53 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Sales Person Companies</h3>
+        </div>
+        <div class="col-sm-6">
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'salesperson:add_client' %}">Add Client</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Date Created</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for company in companies %}
+                <tr>
+                    <td><a href="{% url 'roberms_admin:company_appointments' company.id %}">{{ company.name }}</a></td>
+                    <td>{{ company.phone_number }}</td>
+                    <td>{{ company.email }}</td>
+                    <td>{{ company.created_at|date:'Y-m-d' }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

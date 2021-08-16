@@ -1,0 +1,33 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Edit Stream</h4>
+    <hr>
+</div>
+<div class="col-sm-6">
+    <form class="form-group" action="{% url 'School:edit_stream' stream.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Stream Name</label>
+            <input type="text" value="{{ stream.name }}" class="form-control" name="name">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Stream</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

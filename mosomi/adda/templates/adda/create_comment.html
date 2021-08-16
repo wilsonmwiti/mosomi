@@ -1,0 +1,72 @@
+{% extends 'adda/layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Add Idea Comment</h3>
+{#              <p><a class="btn btn-primary icon-btn" href="{% url 'adda:create_challenge' %}"><i class="fa fa-plus"></i>Add Challenge</a></p>#}
+            </div>
+            <div class="tile-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+                    </div>
+                </div>
+            </div>
+
+                <form action="{% url 'adda:create_comment' idea.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group" hidden>
+                        <label>Idea</label>
+                        <input type="text" name="idea" value="{{ idea.id }}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="date" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone_number" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Vote</label>
+                        <select name="vote" class="form-control">
+                            <option>Comment Vote .....</option>
+                            <option value="UpVote"> Up Vote </option>
+                            <option value="DownVote"> Down Vote </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

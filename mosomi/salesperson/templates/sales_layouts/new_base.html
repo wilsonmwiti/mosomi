@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+{% load filters %}
+<html lang="en">
+  <head>  <link rel="icon" href="{% static 'images/robermss.ico'%}" type='image/x-icon'>
+  {% block additional_meta %}
+
+  {% endblock %}
+    <title>Roberms</title>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/main.css' %}'>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+      <style>
+          .alert {
+            position: relative;
+            padding: 0.1rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 2px solid transparent;
+            border-radius: 1.25rem;
+            }
+          .alert-dismissible .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.1rem 1.25rem;
+            color: inherit;
+            }
+      </style>
+      {% block additional_styles %}
+
+      {% endblock %}
+  </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    {% include 'sales_layouts/new_top_nav.html' %}
+    <!-- Sidebar menu-->
+    {% include 'sales_layouts/side_nav.html' %}
+
+    <main class="app-content">
+    <div class="app-title">
+
+        <div class="row col-sm-12">
+        <div class="col-lg-3">
+            <p>Welcome,<strong>  </strong></p>
+        </div>
+        <div class="col-lg-6">
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible {% if message.tags == 'error' %} alert-danger {% else %} alert-primary {% endif %}">
+                    <button class="close" type="button" data-dismiss="alert">×</button><strong></strong><a class="alert-link" href="#">{{ message }}</a>
+                </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-lg-3">
+            <ul class="app-breadcrumb breadcrumb">
+              <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            </ul>
+        </div>
+
+        </div>
+      </div>
+
+    {% block content %}
+
+  {% endblock %}
+{#    </div>#}
+    </main>
+
+
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    {% block additional_scripts %}
+
+    {% endblock %}
+
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+                <h3 class="title">Sender Name Application</h3>
+              <hr>
+            <div class="tile-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form action="{% url 'sms:new_application' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Sender Name</label>
+                        <input type="text" class="form-control" name="sender_name" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
+                </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}

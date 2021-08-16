@@ -1,0 +1,79 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Invoice Services</h4>
+        </div>
+        <div class="col-sm-6">
+            <a href="{% url 'Invoices:add_invoice_services' invoice.id %}" class="btn btn-outline-primary pull-right">New Invoice Service</a>
+    </div>
+    </div>
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for service in services %}
+                <tr>
+                    <td><a>{{ service.service }}</a></td>
+                    <td>{{ service.unit_price }}</td>
+                    <td>{{ service.quantity }}</td>
+                    <td>
+                        <a href="{% url 'Invoices:edit_invoice_service' service.id %}" title="Edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>
+                        <a href="#" id="deleteService" title="Delete" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                        <div hidden>
+                            <a href="{% url 'Invoices:delete_service' service.id %}" id="service_delete"></a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+ <script type="text/javascript" src="{% static 'js/bootstrap-notify.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
+<script type="text/javascript">
+      $('#deleteService').click(function(){
+      	swal({
+      		title: "Are you sure?",
+      		text: "You will not be able to recover this invoice service",
+      		type: "warning",
+      		showCancelButton: true,
+      		confirmButtonText: "Yes, delete it!",
+      		cancelButtonText: "No, cancel please!",
+      		closeOnConfirm: false,
+      		closeOnCancel: false
+      	}, function(isConfirm) {
+      		if (isConfirm) {
+      		    document.getElementById('service_delete').click();
+      			swal("Deleted!", "Service Deleted Successfully", "success");
+      		} else {
+      			swal("Cancelled", "Deletion cancelled :)", "error");
+      		}
+      	});
+      });
+    </script>
+{% endblock %}

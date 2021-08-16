@@ -1,0 +1,78 @@
+{% load static %}
+
+<div hidden>
+    {% url 'School:home:dashboard' as dashboard %}
+    {% url 'salesperson:clients' as clients %}
+    {% url 'School:school_classes' as classes %}
+    {% url 'School:exam_years' as exam_years %}
+    {% url 'School:finance_classes' as finance_classes %}
+    {% url 'School:finance_years' as finance_years %}
+    {% url 'School:sms_menu' as sms_menu %}
+    {% url 'School:settings' as settings %}
+</div>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <ul class="app-menu">
+        <li>
+            <a {% if request.path == dashboard %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ dashboard }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Dashboard</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == sms_menu %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ sms_menu }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">SMS</span></a>
+        </li>
+
+      <li>
+            <a class="app-menu__item" href="#">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Contact Management</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == classes %} class="app-menu__item active"
+               {% else %}
+                    class="app-menu__item"
+               {% endif %}
+                    href="{{ classes }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Classes</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == exam_years %} class="app-menu__item active"
+               {% else %}
+                    class="app-menu__item"
+               {% endif %} href="{{ exam_years }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Examinations</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == finance_years %} class="app-menu__item active"
+               {% else %}
+                    class="app-menu__item"
+               {% endif %} href="{{ finance_years }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Finance</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == settings %} class="app-menu__item active"
+               {% else %}
+                    class="app-menu__item"
+               {% endif %} href="{{ settings }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Settings</span></a>
+      </li>
+
+      </ul>
+    </aside>

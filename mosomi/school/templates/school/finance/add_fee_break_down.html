@@ -1,0 +1,55 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load school_filters %}
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h3> Fee Break Down </h3>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+
+    </div>
+
+    <div class="col-sm-6">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Break Down Name</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="percentage">Percentage</label>
+                <input type="text" class="form-control" name="percentage" id="percentage">
+            </div>
+
+            <div class="form-group">
+                <label for="term_year">Term Year</label>
+                <input type="text" value="{{ term_year.id }}" class="form-control" id="term_year" name="term_year">
+            </div>
+            <input type="submit" class="btn btn-sm btn-outline-success" value="Submit">
+        </form>
+    </div>
+
+</div>
+</div>
+
+    <div class="col-sm-3">
+
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

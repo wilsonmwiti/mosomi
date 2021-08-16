@@ -1,0 +1,59 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Company Appointments</h3>
+        </div>
+        <div class="col-sm-6">
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'salesperson:add_appointment' company.id %}">Add Appointment</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Appointment Date</th>
+{#                    <th>Date Created</th>#}
+                    <th>Status(Visited/Not Visited)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.description }}</td>
+                    <td>{{ appointment.date_visited|date:'Y-m-d' }}</td>
+{#                    <td>{{ appointment.created_at|date:'Y-m-d' }}</td>#}
+                    <td>
+                        {% if appointment.status_visited == True %}
+                            <input type="checkbox" class="form-control" checked disabled>
+                        {% else %}
+                            <input type="checkbox" class="form-control" disabled>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

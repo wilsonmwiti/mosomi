@@ -1,0 +1,62 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+       <div class="tile">
+{#           <div class="page-header">#}
+{#               <div class="row">#}
+                   <div class="tile-title">
+
+                   </div>
+{#               </div>#}
+{#           </div>#}
+
+       <div class="row">
+           <div class="col-lg-6">
+           <div class="bs-component">
+           <div class="card border-primary">
+               <div class="card-header">
+                   <h5 class="mb-3" id="buttons">Send Personalized Message To Existing Contact Group</h5>
+               </div>
+               <div class="card-body">
+                   <p>Send personalized message to clients stored in your contact groups</p>
+                   <a class="btn btn-primary" href="{% url 'School:personalized_from_contact_group' %}">Continue</a>
+                   <br>
+{#                   <small>Dont have contacts, Click<a href="{% url 'sms:customer_contacts' %}"> Here</a> to add</small>#}
+               </div>
+           </div>
+           </div>
+       </div>
+
+       <div class="col-lg-6">
+           <div class="card border-primary">
+               <div class="bs-component">
+                   <div class="card-header">
+                   <h5 class="mb-3" id="buttons">Send Personalized SMS from a File</h5>
+                   </div>
+               <div class="card-body">
+                   <p>Already storing information on your customers? Upload this information from an Excel or CSV file and send personalised messages unique to each recipient.</p>
+                   <a class="btn btn-primary" href="{% url 'School:personalized_from_file' %}">Continue</a>
+               </div>
+               </div>
+           </div>
+       </div>
+
+           </div>
+       </div>
+       </div>
+{#    </div>#}
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

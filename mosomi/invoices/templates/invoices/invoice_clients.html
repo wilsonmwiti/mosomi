@@ -1,0 +1,57 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Clients</h4>
+        </div>
+        <div class="col-sm-6">
+            <a href="{% url 'Invoices:create_client' %}" class="btn btn-outline-primary pull-right">New Client</a>
+        </div>
+    </div>
+    <hr>
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Phone Number</th>
+                    <th>Customer Number</th>
+                    <th>KRA PIN</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td><a href="{% url 'Invoices:client_invoices' client.id %}">{{ client.company_name }}</a></td>
+                    <td>{{ client.phone_number }}</td>
+                    <td>{{ client.client_number }}</td>
+                    <td>{{ client.kra_pin }}</td>
+                    <td>
+                        <a href="{% url 'Invoices:edit_client' client.id %}" title="Edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>
+{#                        <a href="" title="Approve" class="btn btn-outline-primary btn-sm"><i class="fa fa-check-square-o"></i></a>#}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

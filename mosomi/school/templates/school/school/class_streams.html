@@ -1,0 +1,54 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load school_filters %}
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Streams</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-primary text-white float-right" href="{% url 'School:add_stream' form.id %}">Add Stream</a>
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Stream Name</th>
+                    <th>Number of students</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for stream in streams %}
+                <tr>
+                    <td><a href="{% url 'School:school_students'  stream.id %}">{{ stream.name }}</a></td>
+                    <td>{{ stream.id|stream_students }}</td>
+                    <td>
+                        <a href="{% url 'School:edit_stream' stream.id %}" class="btn btn-outline-primary">Edit</a>
+                        <a class="btn btn-outline-danger" href="{% url 'School:delete_stream' stream.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load school_filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Subjects Scores</h3>
+        </div>
+        <div class="col-sm-6">
+            <a href="" class="btn btn-outline-success pull-right">Print Report</a>
+            <a href="{% url 'School:grade_student' student_id exam_id %}" class="btn btn-outline-success pull-right">Final Score</a>
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'School:add_term' %}">Add Term</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Score</th>
+                    <th>Grade</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for d in data %}
+                <tr>
+                    <td><a href="">{{ d|return_item:1 }}</a></td>
+                    <td>{{ d|return_item:2 }}</td>
+                    <td>
+                        {% if d|return_item:2 %}
+                        {{ d|return_item:2|grade }}
+                        {% else %}
+                            {{ 0|grade }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'School:edit_student_score' student_id exam_id d|return_item:0 %}" class="btn btn-outline-primary">Edit</a>
+                        <a class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

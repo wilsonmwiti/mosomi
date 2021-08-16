@@ -1,0 +1,67 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Students</h3>
+        </div>
+        <div class="col-sm-6">
+            <form action="{% url 'School:upload_student_marks' exam_id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-sm-8">
+                    <input type="file" name="my_file" class="form-control">
+                </div>
+
+                <div class="col-sm-4">
+                    <input type="submit" value="Upload Marks" class="btn btn-sm btn-outline-success">
+                </div>
+
+            </form>
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'School:add_exam' form_id term_id %}">Add Exam</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Gender</th>
+                    <th>Admission Number</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                <tr>
+                    <td><a href="{% url 'School:student_subject_scores' student.id exam_id form_id %}">{{ student.first_name }} {{ student.last_name }}</a></td>
+                    <td>{{ student.gender }}</td>
+                    <td>{{ student.admission_number }}</td>
+                    <td>
+{#                        <a href="{% url 'School:exam_results_template' exam_id %}" class="btn btn-outline-primary">Download Template</a>#}
+{#                        <a class="btn btn-outline-danger">Delete</a>#}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

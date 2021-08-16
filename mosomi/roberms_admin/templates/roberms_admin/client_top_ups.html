@@ -1,0 +1,50 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+{% load sales_person_filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="tile">
+<div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>SMS Count</th>
+                    <th>Date of Top Up</th>
+                    <th>Commission Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for top_up in top_ups %}
+                <tr>
+                    <td>{{ top_up.user_id|get_email }}</td>
+                    <td>{{ top_up.amount }}</td>
+                    <td>{{ top_up.sms_count }}</td>
+                    <td>{{ top_up.timestamp|date:'Y-m-d' }}</td>
+                    <td>
+                        {% if top_up.commission_paid == True %}
+                        <p>Commission Paid</p>
+                        {% else %}
+                        <a class="btn btn-sm btn-outline-primary" href="{% url 'roberms_admin:mark_commission_paid' top_up.id %}">MARK AS PAID</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

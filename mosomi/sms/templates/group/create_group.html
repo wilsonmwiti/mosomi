@@ -1,0 +1,31 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Add Contact Group</h3>
+            <div class="tile-body">
+              <form action="{% url 'sms:create_group' %}" method="post">
+                  {% csrf_token %}
+                <div class="form-group">
+                  <label class="control-label">Group Name</label>
+                  <input class="form-control" name="name" type="text" placeholder="Enter Group Name">
+                </div>
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Create Group</button>
+              </form>
+            </div>
+            <div class="tile-footer">
+            </div>
+          </div>
+        </div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

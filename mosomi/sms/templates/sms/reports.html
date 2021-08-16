@@ -1,0 +1,52 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+<meta http-equiv="refresh" content="30">
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Message Status Report</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+    var pdata = [
+      	{
+      		value: {{ messages_not_sent }},
+      		color:"#F7464A",
+      		highlight: "#FF5A5E",
+      		label: "Messages Not Sent Due To An Error"
+      	},
+      	{
+      		value: {{ sent_messages }},
+      		color: "#46BFBD",
+      		highlight: "#5AD3D1",
+      		label: "Sent Messages"
+      	},
+        {
+      		value: {{ airtel_messages }},
+      		color: "#1bbf00",
+      		highlight: "#46bf2e",
+      		label: "Airtel Messages"
+      	},
+      ];
+
+    var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+    var pieChart = new Chart(ctxp).Pie(pdata);
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Add Company</h4>
+    <hr>
+</div>
+
+<div class="col-sm-12">
+    <form action="{% url 'salesperson:add_company' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" class="form-control" name="name" value="{{ form.name.value }}">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" name="phone_number" value="{{ form.phone_number.value }}">
+        </div>
+
+        <div class="form-group">
+            <label>Contact Person</label>
+            <input type="text" class="form-control" name="contact_person" value="{{ form.contact_person.value }}">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" value="{{ form.email.value }}">
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" name="location" value="{{ form.location.value }}">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-outline-success float-right">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="tile">
+    <div class="tile-title">
+
+    </div>
+    <div class="tile-body">
+    <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Phone Number</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
+                <tbody>
+{#                <p>{{ message }}</p>#}
+                {% for a, b in merged_sample_data.items %}
+                    {% if forloop.counter < 3 %}
+                <tr>
+                    <td>{{ a }}</td>
+                    <td>{{ b }}</td>
+                </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+    <div>
+        <form action="{% url 'sms:c_sample_merged' %}" method="post">
+            {% csrf_token %}
+            <div hidden>
+                <input type="text" name="group" value="{{ group }}">
+                <input type="text" name="message" value="{{ message }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+
+
+        </form>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

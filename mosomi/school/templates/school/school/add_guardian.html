@@ -1,0 +1,54 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Add Guardian</h4>
+    <hr>
+</div>
+<div class="col-sm-6">
+    <form class="form-group" action="{% url 'School:add_guardian' stream.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Guardian Full Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+
+        <div class="form-group">
+            <label>Guardian Full Name</label>
+            <select class="form-control" name="type">
+                <option selected>Select Relation</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Grand Father">Grand Father</option>
+                <option value="Grand Mother">Grand Mother</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="number" class="form-control" name="phone_number">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Guardian</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

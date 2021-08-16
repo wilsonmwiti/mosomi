@@ -1,0 +1,65 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-12">
+    <div class="tile">
+        <div class="col-sm-6">
+            <div class="tile-title">
+                <strong>Update Contact</strong>
+            </div>
+        </div>
+
+        <div class="tile-body">
+            <form action="{% url 'sms:update_contact' contact.id %}" method="post">
+                {% csrf_token %}
+                <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="control-label">Contact Name</label>
+                      <input class="form-control" name="name" value="{{ contact.name }}" type="text" placeholder="Enter Contact Name">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">Email</label>
+                      <input class="form-control" name="email" value="{{ contact.email }}" type="text" placeholder="Enter Email">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">Phone Number</label>
+                      <input class="form-control" name="phone_number" value="{{ contact.phone_number }}" type="text" placeholder="Enter Phone Number">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">Group</label>
+                      <input class="form-control" readonly name="group" type="text" value="{{ contact.group.name }}" placeholder="Enter Group Name">
+                    </div>
+
+                    <div class="form-group">
+                        {% if contact.is_active == True %}
+                                <a href="{% url 'sms:activate_deactivate_contact' contact.id %}" class="btn btn-outline-danger">De-activate</a>
+                            {% elif contact.is_active == False %}
+                                <a href="{% url 'sms:activate_deactivate_contact' contact.id %}" class="btn btn-outline-primary">Activate</a>
+                            {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update Contact</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

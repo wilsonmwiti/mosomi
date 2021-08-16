@@ -1,0 +1,37 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="tile col-sm-6">
+    <div class="tile-title">
+        <strong>Payment Verification</strong>
+        <hr>
+    </div>
+
+    <div class="tile-body">
+        <div class="col-sm-6">
+            <form method="post" action="{% url 'sms:verify_payment' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label" for="verification_code">Verification Code</label>
+                    <input class="form-control" id="verification_code" name="verification_code" type="text">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Verify</button>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

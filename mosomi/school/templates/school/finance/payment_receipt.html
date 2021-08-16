@@ -1,0 +1,153 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row border-dark">
+        <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <section class="invoice">
+              <div class="row mb-4">
+                <div class="col-4">
+{#                  <h2 class="page-header"><img alt="Logo" src="{% static 'images/WhatsApp Image 2019-10-11 at 11.01.09.jpeg' %}" height="110px"></h2>#}
+{#                    <h3 style="margin-top: -13px !important; color: #1F494A; font-size: 11px !important;">Discovering your potential</h3>#}
+                </div>
+                  <div class="col-4">
+                      <h2>Tuition Receipt</h2>
+                  </div>
+                <div class="col-3">
+{#                  <h2 class="text-left" style="color: #1F494A; font-size: 35px">INVOICE</h2>#}
+                </div>
+              </div>
+              <div class="row invoice-info" style="">
+                  <div class="col-sm-2">
+
+                  </div>
+                  <div class="col-sm-8">
+                      <h6>Student Name: ____________________________________________________________________________________________</h6>
+                      <h6>ADM NO: __________________________________________________________________________________________________</h6>
+                      <h6>Form: ____________________________________________________________________________________________________</h6>
+                      <h6>Stream: __________________________________________________________________________________________________</h6>
+                      </div>
+                  </div>
+
+              <div class="row">
+              <div class="col-sm-2">
+
+              </div>
+                <div class="col-8 table-responsive table-hover">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>N.O</th>
+                        <th>BreakDown</th>
+                        <th>Amount</th>
+                        <th>$$</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for service in services %}
+                      <tr>
+                        <td>{{ service.service }}</td>
+                        <td>{{ service.quantity }}</td>
+                        <td>{{ service.unit_price|floatformat:"2" }}</td>
+                        <td>{{ service|get_services_amount|floatformat:"2" }}</td>
+                      </tr>
+                    {% endfor %}
+                    <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                         <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                         <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                        <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+                        <tr>
+                             <td>  </td>
+                             <td>  </td>
+                             <td>  </td>
+                             <td> - </td>
+                         </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-sm-6">
+
+                </div>
+                <div class="col-sm-4">
+                    <h6>Total Paid: </h6>
+                    <h6>Balance: </h6>
+                </div>
+                <div class="col-sm-2">
+                    <h6 style="text-align: right">{{ total|floatformat:"2" }}</h6>
+                    <h6 style="text-align: right">{{ discount|floatformat:"2" }}</h6>
+                    <h6 style="text-align: right">{{ sub_total|floatformat:"2" }}</h6>
+                    <h6 style="text-align: right">{{ vat|floatformat:"2" }}</h6>
+                    <h5 style="text-align: right">{{ new_total|floatformat:"2" }}</h5>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-8">
+                    <h4>Paid By: _______________________________________________________________________</h4>
+                    <h4>Phone Number: ____________________________________________________________</h4>
+                    <h4>Balance: __________________________________________________________________</h4>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 100px !important;">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-6">
+                    <h6>Thank you</h6>
+{#                    <p>For any inquiry about this invoice call 0725029795</p>#}
+                    <hr>
+                </div>
+                 <div class="col-sm-3">
+
+                </div>
+            </div>
+              <div class="row d-print-none mt-2">
+                <div class="col-12 text-right"><a class="btn btn-primary" href="javascript:window.print();"><i class="fa fa-print"></i> Print</a></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

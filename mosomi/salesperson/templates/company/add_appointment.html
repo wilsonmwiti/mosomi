@@ -1,0 +1,52 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+{% load tz %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Add Appointment</h4>
+    <hr>
+</div>
+
+<div class="col-sm-12">
+    <form action="{% url 'salesperson:add_appointment' company.id %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Appointment Description</label>
+            <textarea name="description" class="form-control" required placeholder="Appointment description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Appointment Date</label>
+            <input class="form-control" id="demoDate" required name="appointment_date" type="text" placeholder="Select Date">
+{#            <input type="date" class="form-control" >#}
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-success pull-right" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>
+
+{% endblock %}
+{% block additional_scripts %}
+    <script>
+        $('#demoDate').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+    </script>
+{% endblock %}

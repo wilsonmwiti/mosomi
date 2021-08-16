@@ -1,0 +1,39 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Add Exam</h4>
+    <hr>
+</div>
+<div class="col-sm-6">
+    <form class="form-group" action="{% url 'School:add_exam' form.id term_year.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+
+        <div class="form-group" hidden>
+            <label>Term</label>
+            <input type="text" value="{{ term_year.id }}" class="form-control" name="term_year_id">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Exam</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

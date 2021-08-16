@@ -1,0 +1,50 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Report</h3>
+{#              <p><a class="btn btn-primary icon-btn" href="{% url 'sms:create_group_contact' group.id %}"><i class="fa fa-plus"></i>Add Contact</a></p>#}
+            </div>
+            <div class="tile-body">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                    <tr>
+                        <th>Phone Number</th>
+                        <th>Text Message</th>
+                        <th>Offer Code</th>
+                        <th>Delivery Status</th>
+                        <th>Date Sent</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for message in text_messages.iterator %}
+                    <tr>
+                        <td>{{ message.dest_msisdn }}</td>
+                        <td>{{ message.text_message }}</td>
+                        <td>{{ message.offer_code }}</td>
+                        <td>{{ message.delivery_status }}</td>
+                        <td>{{ message.send_date }}</td>
+                        <td>
+                            <div class="btn-group">
+{#                                <a class="btn btn-primary" href="{% url 'sms:update_contact' contact.id %}"><i class="fa fa-lg fa-edit"></i></a>#}
+{#                                <a class="btn btn-danger" href="{% url 'sms:delete_contact' contact.id %}"><i class="fa fa-lg fa-trash"></i></a>#}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}

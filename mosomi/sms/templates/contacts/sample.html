@@ -1,0 +1,110 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Group Contacts</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Group Contacts</h3>
+              <p><a class="btn btn-primary icon-btn" href="{% url 'sms:create_group_contact' group.id %}"><i class="fa fa-plus"></i>Add Contact</a></p>
+            </div>
+            <div class="tile-body table-responsive">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+{#                        <label>Search:#}
+{#                            <input id="myInputTextField" type="search" class="form-control form-control-sm" placeholder="" aria-controls="sampleTable">#}
+{#                        </label>#}
+                    </div>
+                </div>
+            </div>
+
+                <div class=" ">
+                    <table class="table table-hover table-bordered myTable" id="myT">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Contact Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Status Active</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                </table>
+                </div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+    $(document).ready(function() {
+    var oTable = $('#myT').DataTable({
+        // ...
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{% url 'sms:order_list_json' group.id  %}",
+        "columnDefs": [ {
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<a id='edit' class='btn btn-outline-primary'><i class=\"fa fa-lg fa-edit\"></i>Edit</a>" +
+                "<a id='delete' class='btn btn-outline-danger'><i class=\"fa fa-lg fa-trash\"></i>Delete</a>"
+        } ]
+    });
+
+    $('#myT tbody').on( 'click', '#edit', function () {
+        var data = oTable.row( $(this).parents('tr') ).data();
+        var my_id = data[0];
+        window.location.href = '/update/contact/'+ my_id;
+    } );
+
+    $('#myT tbody').on( 'click', '#delete', function () {
+        var data = oTable.row( $(this).parents('tr') ).data();
+        var my_id = data[0];
+        confirm(my_id)
+    } );
+
+    // ...
+});
+
+    function confirm(contact_id) {
+        Swal.fire({
+            title: 'You will loose this contact ..',
+            showDenyButton: true,
+            showConfirmButton: false,
+            showCancelButton: true,
+            denyButtonText: `Confirm`,
+        }).then((result) => {
+
+        if (result.isConfirmed) {
+
+        } else if (result.isDenied) {
+            window.location.href = '/delete/contacts/'+ contact_id;
+        }
+        })
+    }
+</script>
+{% endblock %}

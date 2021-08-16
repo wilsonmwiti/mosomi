@@ -1,0 +1,57 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+        <div class="tile-body">
+        <form action="{% url 'roberms_admin:assign_client' sales_person_id %}" method="post">
+        {% csrf_token %}
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Check To Assign</th>
+                    <th>Company Name</th>
+                    <th>Phone Number</th>
+                    <th>Contact Person</th>
+                    <th>Date Joined</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for client in clients %}
+
+                    <td>
+                        <div class="form-group">
+                            <input name="client_ids[]" value="{{ client.id }}" class="form-control" type="checkbox">
+                        </div>
+                    </td>
+                    <td>{{ client }}</td>
+                    <td>{{ client.phone_number }}</td>
+                    <td>{{ client }}</td>
+                    <td>{{ client.date_joined|date:'Y-m-d' }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-outline-primary pull-right" type="Submit">Submit</button>
+            </div>
+        </div>
+                </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

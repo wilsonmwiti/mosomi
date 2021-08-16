@@ -1,0 +1,56 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Examinations</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-primary float-right flex-column text-white" href="{% url 'School:add_exam' form_id term_year.id %}">Add Exam</a>
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="">Download</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>N.O of Students</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for exam in exams %}
+                <tr>
+                    <td><a href="{% url 'School:examination_students' form_id exam.id %}">{{ exam.name }}</a></td>
+                    <td>1</td>
+                    <td>
+                        <a href="{% url 'School:exam_results_template' exam.id %}" class="btn btn-sm btn-outline-primary">Download</a>
+                        <a href="" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

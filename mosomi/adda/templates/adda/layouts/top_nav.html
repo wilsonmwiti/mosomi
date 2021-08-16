@@ -1,0 +1,81 @@
+{% load static %}
+<header>
+      <div class="container-fluid">
+        <div class="header d-md-flex justify-content-between py-3 pl-2">
+          <!-- logo -->
+          <div id="logo">
+            <h1>
+              <a href="{% url 'adda:dashboard' %}">ADDA</a>
+            </h1>
+          </div>
+          <!-- //logo -->
+          <!-- nav -->
+          <div class="nav_main">
+            <nav>
+              <label for="drop" class="toggle">Menu</label>
+              <input type="checkbox" id="drop" />
+              <ul class="menu">
+                <li>
+                  <a href="{% url 'sms:sms-home' %}" class="active nav-style">Home</a>
+                </li>
+                <li>
+                  <a href="about.html" class="nav-style">About</a>
+                </li>
+                <li>
+                  <a href="{% url 'sms:services' %}" class="nav-style">Services</a>
+                </li>
+                <li>
+                  <!-- First Tier Drop Down -->
+                  <label for="drop-2" class="toggle toogle-2 nav-style">Dropdown
+                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                  </label>
+                  <a href="#" class="nav-style">Dropdown
+                    <span class="fa fa-angle-down" aria-hidden="true"></span>
+                  </a>
+                  <input type="checkbox" id="drop-2" />
+                  <ul>
+                    <li>
+                      <a href="gallery.html" class="drop-text">Gallery</a>
+                    </li>
+                    <li>
+                      <a href="blog.html" class="drop-text">Blog</a>
+                    </li>
+                    <li>
+                      <a href="{% url 'sms:services' %}" class="drop-text">Service</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="{% url 'sms:contact' %}" class="nav-style">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- //nav -->
+        </div>
+      </div>
+    </header>
+
+{#<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" style="background: #e8e8e8 !important;" id="ftco-navbar">#}
+{#	    <div class="container">#}
+{#	      <a class="navbar-brand" href="{%url 'sms:apps'%}">Roberms<span></span></a>#}
+{#	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">#}
+{#	        <span class="oi oi-menu"></span> Menu#}
+{#	      </button>#}
+{##}
+{#	      <div class="collapse navbar-collapse" id="ftco-nav">#}
+{#	        <ul class="navbar-nav nav ml-auto">#}
+{#	          <li class="nav-item"><a href="{%url 'sms:sms-home'%}" class="nav-link"><span>Home</span></a></li>#}
+{#            <!-- <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>#}
+{##}
+{#	          <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li> -->#}
+{#	          <!-- <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li> -->#}
+{#	          <!-- <li class="nav-item"><a href="#testimony-section" class="nav-link"><span>Testimony</span></a></li> -->#}
+{#	          <!-- <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li> -->#}
+{#	          <!-- <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>#}
+{#            <li class="nav-item"><a href="{%url 'sms:register'%}" class="nav-link"><span>Sign up</span></a></li> -->#}
+{#            <li class="nav-item login"><a href="{%url 'sms:logout'%}" class="nav-link"><span>Sign out</span></a></li>#}
+{#	        </ul>#}
+{#	      </div>#}
+{#	    </div>#}
+{#	  </nav>#}

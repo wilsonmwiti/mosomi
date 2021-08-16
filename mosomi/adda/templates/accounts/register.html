@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+          .login-box{
+              min-height: 500px !important;
+              min-width: 800px !important;
+          }
+      </style>
+    <title>Add Registration</title>
+  </head>
+  <body>
+  <section class="material-half-bg">
+      <div class="cover"></div>
+  </section>
+  <section class="login-content">
+      <div class="logo">
+        <h1 style="font-family: 'Times New Roman'">Adda User Registration</h1>
+      </div>
+      <div class="login-box">
+          <form method="post" class="login-form" action="{% url 'adda:register' %}">
+              {% csrf_token%}
+              <div class="row">
+                  <div class="col-sm-6">
+                      {% if form.username.errors %}
+                  {% for error in form.username.errors %}
+                      <li><strong>{{ error|escape }}</strong></li>
+                  {% endfor %}
+              {% endif %}
+
+              <div class="form-group">
+                  <label class="control-label" for="username">User Name </label>
+                  <input type="text" name="username" id="username" class="form-control" required>
+              </div>
+
+              {% if form.email.errors %}
+                      {% for error in form.email.errors %}
+                          <li><strong>{{ error|escape }}</strong></li>
+                      {% endfor %}
+              {% endif %}
+                      <div class="form-group">
+                          <label class="control-label" for="email">Email</label>
+                          <input type="email" name="email" id="email" class="form-control" required>
+                      </div>
+
+              {% if form.phone_number.errors %}
+                      {% for error in form.phone_number.errors %}
+                          <li><strong>{{ error|escape }}</strong></li>
+                      {% endfor %}
+              {% endif %}
+                      <div class="form-group">
+                          <label class="control-label" for="email">Phone Number</label>
+                          <input type="number" name="phone_number" id="phone_number" class="form-control" required>
+                      </div>
+
+                  <div class="form-group">
+                          <label class="control-label" for="email">County</label>
+                          <select name="county" class="form-control" required>
+                              <option>Select County..</option>
+                              {% for county in counties %}
+                                  <option value="{{ county.name }}">{{ county.name }}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                  </div>
+
+              <div class="col-sm-6">
+              <div class="form-group">
+                          <label class="control-label" for="email">Ward</label>
+                          <input type="text" name="ward" id="email" class="form-control" required>
+                      </div>
+
+                  <div class="form-group">
+                      <label class="control-label" for="username">Password</label>
+                      <input type="password" name="password1" id="username" required class="form-control">
+                  </div>
+
+                  {% if form.password2.errors %}
+                          {% for error in form.password2.errors %}
+                              <li><strong>{{ error|escape }}</strong></li>
+                          {% endfor %}
+                  {% endif %}
+                    <div class="form-group">
+                      <label class="control-label" for="username">Confirm Password</label>
+                      <input type="password" name="password2" id="username" class="form-control">
+                  </div>
+
+              </div>
+
+              </div>
+
+
+
+      <div class="form-group btn-container">
+            <button  type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Sign Up</button>
+          </div>
+    </form>
+
+      </div>
+    </section>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+
+{#    <script type="text/javascript">#}
+{#      $('.login-content [data-toggle="flip"]').click(function() {#}
+{#      	$('.login-box').toggleClass('flipped');#}
+{#      	return false;#}
+{#      });#}
+{#    </script>#}
+  </body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load school_filters %}
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Classes</h3>
+        </div>
+        <div class="col-sm-6">
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'School:finance_add_payment' student_id form_id term_id %}">Add Payment</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Form Name</th>
+{#                    <th>Fee</th>#}
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for form in forms %}
+                <tr>
+                    <td><a href="">{{ form.name }}</a></td>
+                    <td>
+                        <a href="{% url 'School:set_term_fee' term_year.id   form.id  %}" class="btn btn-sm btn-outline-success">Set Fee</a>
+                        <a href="" class="btn btn-sm btn-outline-success">Set Fee BreakDown</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

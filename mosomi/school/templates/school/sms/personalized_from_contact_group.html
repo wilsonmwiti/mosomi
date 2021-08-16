@@ -1,0 +1,144 @@
+{% extends 'school/layouts/new_base.html' %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="app-title">#}
+{#        <div>#}
+{#          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>#}
+{#            <h2>Welcome, <strong> {{request.user.username}} </strong></h2>#}
+{#          <p></p>#}
+{#        </div>#}
+{#        <ul class="app-breadcrumb breadcrumb">#}
+{#          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>#}
+{#          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>#}
+{#        </ul>#}
+{#      </div>#}
+
+    <div class="col-sm-12">
+        <div class="tile">
+            <div class="tile-title">
+                <h5>Campaigns > Send SMS To Contacts Database</h5>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+           <div class="bs-component">
+           <div class="card border-primary">
+               <div class="card-header">
+                   <h6>Send SMS To Contacts Database</h6>
+               </div>
+
+               <div class="card-body">
+                   <form method="post" action="" enctype="multipart/form-data">
+                       {% csrf_token %}
+
+                       <div class="form-group">
+                           <p>Ensure each parameter eg. [name] added is preceded and succeeded by a space e.g Hello [name] how are you.</p>
+                           <div class="form-group contact-forms">
+                               <label for="Message">Message</label>
+                               <textarea id="Message" required="" oninput="computeMessageCost()" name="Message" class="form-control contact-forms" rows="3" maxlength="765"></textarea>
+                           </div>
+
+                           <div class="form-group contact-forms">
+                               <label></label>
+                               <select class="form-control" name="group">
+                               <option class="form-control" value="none">Select Group</option>
+                                   {% for group in groups %}
+                                       <option class="form-control" value="{{ group.id }}">{{ group.name }}</option>
+                                   {% endfor %}
+                               </select>
+                           </div>
+
+                           <div class="row">
+                               <div class="col-sm-12">
+                                   <strong>Personalize message with</strong>
+                               </div>
+                           </div>
+
+                           <div class="row">
+                               <div class="col-sm-12">
+                                   <a class="btn sent-butnn btn-primary" onclick="setupTags_buttons('Name')">Name</a>
+{#                                   <a class="btn sent-butnn btn-primary" onclick="setupTags_buttons('LastName')">LastName</a>#}
+                               </div>
+                           </div>
+
+                           <span><strong id="charCount">0</strong> Characters <span id="partCount">1</span> of 5 messages (Cost = <strong id="creditCount">1</strong> SMS)</span>
+                       </div>
+                       <button type="submit" class="btn sent-butnn">Sample Merged</button>
+
+                   </form>
+               </div>
+           </div>
+           </div>
+       </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+        var messageSize = 160;
+        var longMessageSize = 153;
+        var maxMessageLength = 153 * 5;
+        var creditPerPart = 1.0;
+
+        function computeMessageCost() {
+            var charCountField = $('#charCount');
+            var partCountField = $('#partCount');
+            var creditCountField = $('#creditCount');
+            var contentField = $('textarea#Message');
+            var len = contentField.val().length;
+            var parts = len <= messageSize ? 1 : Math.ceil(len / longMessageSize);
+
+            //get newline count and add the extra characters to the length
+            var ncount = contentField.val().split('\n').length - 1;
+            if (ncount > 0) len += ncount;
+            charCountField.text(len);
+            partCountField.text(parts);
+            creditCountField.text(parts * creditPerPart);
+        }
+
+        function setupTags_buttons(tag) {
+            {#console.log(tag);#}
+            var messageField = $('textarea#Message');
+            var element = messageField.get(0);
+            var input = '[' + (tag).trim() + ']';
+            console.log(tag);
+            console.log(input);
+            var caretPosition = getCaret(element);
+            var text = messageField.val();
+            var p1 = text.substring(0, caretPosition);
+            var p2 = text.substring(caretPosition);
+            messageField.val(p1 + input + p2);
+            messageField.focus();
+        }
+
+
+        function getCaret(el) {
+            if (el.selectionStart) {
+                return el.selectionStart;
+            }
+            else if (document.selection) {
+                el.focus();
+                var r = document.selection.createRange();
+                if (r == null) {
+                    return 0;
+                }
+                var re = el.createTextRange(),
+                    rc = re.duplicate();
+                re.moveToBookmark(r.getBookmark());
+                rc.setEndPoint('EndToStart', re);
+                return rc.text.length;
+            }
+            return 0;
+        }
+</script>
+{% endblock %}

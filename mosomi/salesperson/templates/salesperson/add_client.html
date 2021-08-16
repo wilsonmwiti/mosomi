@@ -1,0 +1,34 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Add Client</h4>
+    <hr>
+</div>
+<div class="col-sm-6">
+    <form class="form-group" action="{% url 'salesperson:add_client' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="number" class="form-control" name="phone_number">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Client</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col-sm-3">
+
+    </div>
+        <div class="col-md-6">
+          <div class="tile">
+                <h3 class="title">Bulk SMS</h3>
+              <hr>
+            <div class="tile-body">
+                <form action="{% url 'sms:st_ann_add_patient' %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="patient_name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone_number" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age Group</label>
+                        <select class="form-control" name="group" required>
+                            <option selected>Select User Age Group</option>
+                            {% for group in groups %}
+                                <option value="{{ group.id }}">{{ group.name }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary float-right">Save</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+{% block additional_scripts %}
+
+{% endblock %}

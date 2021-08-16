@@ -1,0 +1,51 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="tile">
+        <div class="tile-body">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+        </div>
+
+            <form action="{% url 'roberms_admin:add_top_up' %}" method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input class="form-control" type="text" name="amount">
+                </div>
+
+                <div class="form-group">
+                    <label>SMS Count</label>
+                    <input class="form-control" type="text" name="sms_count">
+                </div>
+
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select name="customer" class="form-control">
+                        <option value="">Select a customer</option>
+                        {% for customer in customers %}
+                            <option value="{{ customer.id }}">{{ customer.username }} {{ customer.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            <button type="submit" class="btn btn-sm btn-outline-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

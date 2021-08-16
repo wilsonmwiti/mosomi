@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+      <title>Roberms Bulk SMS | BulkSMS In Kenya</title>
+      <meta property="og:title" content="Roberms Bulk SMS | BulkSMS In Kenya" />
+      <meta name=description content="Send short and important sms messages to customers anywhere in Kenya through our SMS gateway.">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta property="og:description" content="Bulk SMS in Kenya">
+      <link rel="icon" href="{% static 'images/robermss.ico'%}" type='image/x-icon'>
+
+
+      <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'digilab/css/open-iconic-bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/animate.css' %}">
+
+      <link rel="stylesheet" href="{% static 'digilab/css/owl.carousel.min.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/owl.theme.default.min.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/magnific-popup.css' %}">
+
+      <link rel="stylesheet" href="{% static 'digilab/css/aos.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/ionicons.min.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/icomoon.css' %}">
+      <link rel="stylesheet" href="{% static 'digilab/css/style.css' %}">
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="{%url 'sms:sms-home'%}">Roberms<span> | Bulk SMS Kenya</span></a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+
+              {% if user.is_authenticated %}
+                  <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+                  <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+                  <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
+                  <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+                  <li class="nav-item"><a href="{%url 'sms:apps'%}" class="nav-link"><span>Dashboard</span></a></li>
+                  <li class="nav-item login"><a href="{%url 'sms:logout'%}" class="nav-link"><span>Logout</span></a></li>
+                  <li class="nav-item"><a href="{% url 'sms:verify_account' %}" class="nav-link"><span>Verify Account</span></a></li>
+            {% else %}
+                  <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+                  <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+                  <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
+                  <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+                  <li class="nav-item"><a href="{%url 'sms:register'%}" class="nav-link"><span>Sign up</span></a></li>
+                  <li class="nav-item login"><a href="{%url 'login'%}" class="nav-link"><span>Login</span></a></li>
+{#                  <li class="nav-item"><a href="{% url 'sms:verify_account' %}" class="nav-link"><span>Verify Account</span></a></li>#}
+              {%endif%}
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero">
+	  	<h3 class="vr">Welcome to Roberms Bulk SMS</h3>
+		  <div class="home-slider js-fullheight owl-carousel">
+
+{#              <div class="slider-item js-fullheight">#}
+{#                  <div class="overlay"></div>#}
+{#                  <div class="container-fluid p-0">#}
+{#                      <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">#}
+{#                          <div class="one-third order-md-last img js-fullheight" style="background-image:url({% static 'images/martin-sanchez-VhjsGKMefkk-unsplash.jpg' %});">#}
+{#                              <div class="overlay"></div>#}
+{#                          </div>#}
+{#                          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">#}
+{#                              <div class="text">#}
+{#                                  <span class="subheading"></span>#}
+{#                                  <h1 class="mb-4 mt-3"><span>COVID-19 SENSITIZATION</span></h1>#}
+{#                                  <p>Helping businesses during covid-19</p>#}
+{#                                  <p>SMS to Thousands of People at Once in Kenya!!!</p>#}
+{#                                  <p><a href="{% url 'sms:offers' %}" class="btn btn-primary px-5 py-3 mt-3">Learn How</a></p>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                      </div>#}
+{#                  </div>#}
+{#              </div>#}
+
+{#              <div class="slider-item js-fullheight">#}
+{#                  <div class="overlay"></div>#}
+{#                  <div class="container-fluid p-0">#}
+{#                      <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">#}
+{#                          <div class="one-third order-md-last img js-fullheight" style="background-image:url({% static 'images/mish-vizesi-d8pxzkJRQ7I-unsplash.jpg' %});">#}
+{#                              <div class="overlay"></div>#}
+{#                          </div>#}
+{#                          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">#}
+{#                              <div class="text">#}
+{#                                  <span class="subheading"></span>#}
+{#                                  <h1 class="mb-4 mt-3"><span>COVID-19 SENSITIZATION</span></h1>#}
+{#                                  <p>Stay Updated, Stay Safe</p>#}
+{##}
+{#                                  <p><a target="_blank" href="https://www.afro.who.int/health-topics/coronavirus-covid-19" class="btn btn-primary px-5 py-3 mt-3">Get More Information</a></p>#}
+{#                              </div>#}
+{#                          </div>#}
+{#                      </div>#}
+{#                  </div>#}
+{#              </div>#}
+
+              <div class="slider-item js-fullheight">
+                <div class="overlay"></div>
+                <div class="container-fluid p-0">
+                  <div class="row d-md-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+                    <div class="one-third order-md-last img js-fullheight" style="background-image:url({% static 'images/bg_1.jpg' %});">
+                        <div class="overlay"></div>
+                    </div>
+                      <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                        <div class="text">
+                            <span class="subheading">Welcome to the </span>
+                            <h1 class="mb-4 mt-3">Business solution for your  <span>clients</span></h1>
+                            <p>Bulk sms platform to get in touch with your customers</p>
+
+                            <p><a href="{% url 'sms:apps' %}" class="btn btn-primary px-5 py-3 mt-3">Get In</a></p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+	      <div class="slider-item js-fullheight">
+	      	<div class="overlay"></div>
+	        <div class="container-fluid p-0">
+	          <div class="row d-flex no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+	          	<div class="one-third order-md-last img js-fullheight" style="background-image:url({% static 'images/bg_2.jpg'%});">
+	          		<div class="overlay"></div>
+	          	</div>
+		          <div class="one-forth d-flex js-fullheight align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Welcome to the </span>
+			            <h1 class="mb-4 mt-3"> All In One Business <span>Platform</span></h1>
+			            <p>Do more within one platform: With our API intergration, bulk sms platform, contact generation from mpesa payments and other transactions you can engage your clints and reward loyal customers </p>
+
+			            <p><a href="{% url 'sms:apps' %}" class="btn btn-primary px-5 py-3 mt-3">Get In</a></p>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+	    </div>
+    </section>
+
+
+    <section class="ftco-counter img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+    	<div class="container">
+    		<div class="row d-flex">
+    			<div class="col-md-6 col-lg-5 d-flex">
+    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url({% static 'images/ben1.jpg'%});">
+    				</div>
+    			</div>
+    			<div class="col-md-6 col-lg-7 pl-lg-5 py-5">
+    				<div class="py-md-5">
+	    				<div class="row justify-content-start pb-3">
+			          <div class="col-md-12 heading-section ftco-animate">
+			          	<span class="subheading">Know Roberms </span>
+			            <h2 class="mb-4" style="font-size: 34px; text-transform: capitalize;">Our story</h2>
+			            <p>Roberms was started as an idea after high school by two young men who had just completed their KCSE. At that time its presence was in Nyamira county where the founders used to print and distribute examination materials to variois primary schools and train KCSE graduates on basic computer skills</p>
+			            <p>Between 2006-2010, Roberms shifted its operations to the University of Nairobi where the two founders were pursuing their studies. Here the students used to design websites, teach other students ICT skills and ensured full connection of internet to halls of residence absolutely free. It was at this time they were recognized and made ICT representatives of the University of Nairobi.</p>
+			            <p>In 2014, Roberms was fully registered as the ICT company offering consultancy, design, development and business solution to clients.</p>
+						<p>As from 2016, Roberms started offering bulk sms servives, api intergarions, sacco systems, school systems and consultancy.</p>
+						<p> 2019 came as a gift for Rooberms as it integrated all its services to be offered under one system to enable users access all products within one simple application.</p>
+
+			          </div>
+			        </div>
+		          <div class="counter-wrap ftco-animate d-flex mt-md-3">
+	              <div class="text p-4 bg-primary">
+	              	<p class="mb-0">
+		                <span class="number" data-number="14">0</span>
+		                <span>Years of experience</span>
+	                </p>
+	              </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section ftco-no-pb ftco-no-pt ftco-services bg-light" id="services-section">
+    <section class="ftco-section-2 img" style="background-image: url({% static 'images/ron1.jpeg'%});">
+    	<div class="container">
+    		<div class="row d-md-flex justify-content-end">
+    			<div class="col-md-6">
+    				<div class="row">
+    					<div class="col-md-12">
+    						<a href="#" class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Bulk sms</h2>
+                  <p>Send bulk messages to your client with customized sender ID</p>
+                  <p>Send personalized messages from your existing excel file.</p>
+				  <p>Send personalized messages from your existing Contacts</p>
+				  <p>Generate contacts from your clients who pay though mpesa and entice them with periodic offers</p>
+                  <p>Intergrate to our platfomr through api and send messages directlyfrom your existing platform</p>
+                  </a>
+    						<a href="#" class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Sacco system</h2>
+                  <p>From small chamas tobig saccos, signup to get a system to manage your members, loans, deposts and withdrawals </p>
+                  <p>Manage sacco members and send messages to inform them of any event</p>
+                  <p>Mpesa intergartion for your chama deposts and records</p>
+                  </a>
+    						<a href="#" class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>School solution</h2>
+                  <p>Register students with unique details</p>
+                  <p>Manage student details for all classes</p>
+                  <p>Generate fee reports, exam report cards and send details to parents/guardians</p>
+                  <p>Manage staff details and timetables</p>
+                  </a>
+    						<a href="#" class="services-wrap ftco-animate">
+    							<div class="icon d-flex justify-content-center align-items-center">
+    								<span class="ion-ios-arrow-back"></span>
+    								<span class="ion-ios-arrow-forward"></span>
+    							</div>
+    							<h2>Church communication tool</h2>
+    			  <p>Register members and manage engage them during church events</p>
+                  <p>Send personalized message to members whenever they make any contribution</p>
+                  <p>Get personalized sender ID to be sending message to appear using the church name</p>
+    						</a>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Contact</span>
+            <h2 class="mb-4">Contact Us</h2>
+            <!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p> -->
+          </div>
+        </div>
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-map-signs"></span>
+          		</div>
+          		<h3 class="mb-4">Address</h3>
+	            <p>North start building, Lenana road. Office 001</p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-phone2"></span>
+          		</div>
+          		<h3 class="mb-4">Contact Number</h3>
+	            <p><a href="tel://1234567920">+ 254 725 029 795</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-paper-plane"></span>
+          		</div>
+          		<h3 class="mb-4">Email Address</h3>
+	            <p><a href="mailto:admin@roberms.com">admin@roberms.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-globe"></span>
+          		</div>
+          		<h3 class="mb-4">Website</h3>
+	            <p><a href="#">roberms.co.ke</a></p>
+	          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>
+
+
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static 'digilab/js/jquery.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'digilab/js/popper.min.js' %}"></script>
+  <script src="{% static 'digilab/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'digilab/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'digilab/js/aos.js' %}"></script>
+  <script src="{% static 'digilab/js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'digilab/js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'digilab/js/google-map.js' %}"></script>
+
+  <script src="{% static 'digilab/js/main.js' %}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,60 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Company Appointments</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'salesperson:add_appointment' company.id %}">Add Appointment</a>
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Appointment Date</th>
+                    <th>Date Created</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.description }}</td>
+                    <td>{{ appointment.date_visited|date:'Y-m-d' }}</td>
+                    <td>{{ appointment.created_at|date:'Y-m-d' }}</td>
+                    <td>
+                        {% if appointment.status_visited == True %}
+                            <a href="{% url 'salesperson:mark_visited_not_visited' appointment.id %}" class="btn btn-sm btn-outline-warning">Mark (Not Visited)</a>
+                        {% else %}
+                            <a href="{% url 'salesperson:mark_visited_not_visited' appointment.id %}" class="btn btn-sm btn-outline-success">Mark (Visited)</a>
+                        {% endif %}
+                        <a href="{% url 'salesperson:edit_appointment' appointment.id %}"><i class="fa fa-edit"></i> Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

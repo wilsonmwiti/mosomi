@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+                <h1 align="center" style="font-size: 20px;">SMS Report</h1>
+                <hr>
+        <div>
+        <div class='details'>
+            <table>
+                <thead>
+                <tr>
+                    <th>Phone Number</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Date Sent</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for message in messages %}
+                <tr>
+                    <td>{{ message.phone_number }}</td>
+                    <td>{{ message.text_message }}</td>
+                    <td>{{ message.delivery_status }}</td>
+                    <td>{{ message.sent_time }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+        </div>
+    </body>
+</html>

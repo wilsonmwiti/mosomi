@@ -1,0 +1,51 @@
+
+/*body{*/
+/*    background-color: #ffffff;*/
+/*}*/
+/* header{*/
+/*    background-color: #07125f !important;*/
+/* }*/
+
+/* .nav_main{*/
+/*     flex: 1;*/
+/* }*/
+/* nav{*/
+/*     margin-left: 175px;*/
+/* }*/
+
+.app-header__logo {
+    font-family: none !important;
+}
+
+/*@media (min-width: 768px)*/
+.app-header__logo {
+    background-color: #005522 !important;
+}
+
+.app-nav {
+    background: #005522 !important;
+}
+
+.app-header {
+    background: #005522 !important;
+}
+
+.btn-primary {
+    color: #FFF;
+    background-color: #005522;
+    border-color: #005522;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #FFF;
+    background-color: #005522;
+    border-color: #005522;
+}
+
+.app-menu__item.active, .app-menu__item:hover, .app-menu__item:focus {
+    background: #0d1214;
+    border-left-color: #052;
+    text-decoration: none;
+    color: #fff;
+}

@@ -1,0 +1,56 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+
+</div>
+<div id="progress-wrapper">
+{#  <button id="progress-bar-trigger">Run</button>#}
+    <h1>Upload Contacts Status</h1>
+    <h5>Contacts upload completion</h5>
+    <h6 class="text-success">Please be patient as your contacts are being uploaded to our system</h6>
+    <h6 class="text-success">On completion the status below will change to "SUCCESS"</h6>
+    <h6 class="text-success">You can continue to interact with out system as the upload continues but kindly NOTE:</h6>
+    <h6 class="text-danger">Messages sent through the system to the contact group being uploaded will only be sent to the contacts that have already been uploaded</h6>
+    <h6 class="text-danger">If your intention is to send messages to the contacts being uploaded please be patient, wait till the status below changes to "SUCCESS"</h6>
+    <h6 id="progress-bar-message">Waiting for progress to start...</h6>
+
+    <div class="bs-component">
+        <div class="progress mb-2">
+            <div id="my_bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+function updateProgress (progressUrl) {
+    fetch(progressUrl).then(function(response) {
+        response.json().then(function(data) {
+            // update the appropriate UI components
+            {#setProgress(data.state, data.details);#}
+            document.getElementById('progress-bar-message').innerText = data.state;
+            if(data.state === 'SUCCESS'){
+                var element = document.getElementById("my_bar");
+                element.className = ('progress-bar');
+            }else{
+                let element = document.getElementById("my_bar");
+                {#console.log(element);#}
+                element.className = ('progress-bar progress-bar-striped progress-bar-animated');
+                setTimeout(updateProgress, 500, progressUrl);
+            }
+
+        });
+    });
+}
+var progressUrl = '{% url "sms:poll_contact_upload_state" task_id %}';  // django template usage
+updateProgress(progressUrl);
+</script>
+{% endblock %}

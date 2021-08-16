@@ -1,0 +1,61 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-sm-12">
+    <div class="tile">
+    <h4>Customer Payments</h4>
+        <div class="tile">
+        <div class="tile-body table-responsive">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Amount</th>
+                    <th>Reference</th>
+                    <th>Paybill/Till Number</th>
+                    <th>Transaction Reference</th>
+                    <th>Organization Balance</th>
+                    <th>Payment Date</th>
+{#                    <th>Actions</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.first_name }} {{ payment.last_name }}</td>
+                    <td>{{ payment.phone_number }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.reference }}</td>
+                    <td>{{ payment.account_number }}</td>
+                    <td>{{ payment.description }}</td>
+                    <th>{{ payment.organization_balance }}</th>
+                    <td>{{ payment.created_at }}</td>
+{#                    <td>#}
+{#                        <a href="" title="Edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>#}
+{#                        <a href="" title="Delete" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></a>#}
+{#                    </td>#}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

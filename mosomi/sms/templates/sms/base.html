@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'sms/main.css'%}">
+    <meta charset="utf-8">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Roberms</title>
+    {% endif %}
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-dark bg-text affix-top" style="z-index:2000" style="background-color: #e3f2fd;">
+		        <div class="container">
+
+		            <div class="navbar-header">
+		                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		                    <span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i>
+		                </button>
+		                <a class="navbar-brand page-scroll" href="{% url 'sms:apps'%}">
+							<div class="dropdown">
+							  <div class="dropdown-content">
+							    <p >Roberms <br>
+							    </p>
+							  </div>
+							</div>
+		                </a>
+		            </div>
+
+
+		            <div class="collapse navbar-collapse">
+
+		                <ul class="nav navbar-nav">
+		                    <li class="dropdown dropdown-large">
+		                        <a href="#" class="dropdown-toggle " data-toggle="dropdown">Services <b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdown-menu-large row">
+                              <div class="container">
+
+                                  <li class="col-sm-4">
+                                    <div class="first other" rel="#">
+                                        <ul>
+                                          <p class="hidden-xs"> <a href="#" width="100px"></a> </p>
+                                            <li class="dropdown-header-new"><a href="{% url 'sms:send'%}">Bulk sms</a> </li>
+
+                            <li><a href="{% url 'sms:import_csv'%}">personalized messages</a></li><li><a href="#">Sacco system</a></li><li><a href="{% url 'sms:profile' %}">Blogs</a></li>
+                                            <!-- <li class="hidden-xs"><a href="" class="learn">I am a  &rsaquo;</a></li> -->
+
+                                        </ul>
+                                    </div>
+                                  </li>
+
+                                  <li class="col-sm-4">
+
+                                  </li>
+
+                                  <li class="col-sm-4">
+
+                                  </li>
+                              </div>
+                            </ul>
+
+                            </li>
+
+                            </ul>
+		                    </li>
+
+
+
+		                <ul class="nav navbar-nav navbar-right">
+                      {% if user.is_authenticated %}
+                       <li> <a class="nav-item nav-link"> Welcome: {{user}}</a></li>
+                        <!-- <li><a class="nav-item nav-link" href="{%url 'post-create'%}">New Post</a> </li> -->
+                        <li><a class="nav-item nav-link" href="{%url 'sms:profile'%}">profile</a> </li>
+                       <li><a class="nav-item nav-link" href="{%url 'logout'%}">Logout</a> </li>
+
+
+                      {% else %}
+		                    <li><a class="login" href="{%url 'sms:login'%}">Sign In</a> </li>
+		                    <li><a class="signup" href="{%url 'sms:register'%}">Sign Up</a></li>
+
+                      {%endif%}
+		                </ul>
+
+
+		            </div>
+
+
+		        </div>
+
+
+
+
+
+
+
+		    </nav>
+        <main role="main" class="container">
+          <div class="row">
+            <div class="col-md-8">
+
+              {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                      {{ message }}
+
+                    </div>
+                  {% endfor%}
+              {% endif %}
+
+
+
+              {% block content %}
+
+              {% endblock %}
+
+            </div>
+            <div class="col-md-4">
+              <div class="content-section">
+                 <h4>Customer Information Centre.</h4>
+                <div class="jumbotron">
+                  <p class="text-muted">
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Help centre</li>
+                      <li class="list-group-item list-group-item-light">Announcements</li>
+                        <li class="list-group-item list-group-item-light">News update</li>
+                        <li class="list-group-item list-group-item-light">Blogs</li>
+                          <li class="list-group-item list-group-item-light">Get in touch</li>
+
+                  </ul>
+                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

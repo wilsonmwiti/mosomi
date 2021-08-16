@@ -1,0 +1,50 @@
+{% load static %}
+
+<div hidden>
+    {% url 'salesperson:dashboard' as dashboard %}
+    {% url 'salesperson:clients' as clients %}
+    {% url 'salesperson:all_top_ups' as all_top_ups %}
+    {% url 'salesperson:account_usage' as account_usage %}
+    {% url 'salesperson:my_companies' as my_companies %}
+</div>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <ul class="app-menu">
+        <li>
+            <a {% if request.path == dashboard %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ dashboard }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Dashboard</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == clients %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ clients }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Clients</span></a>
+        </li>
+
+
+      <li>
+            <a {% if request.path == all_top_ups %} class="app-menu__item active"
+               {% else %}
+                                                    class="app-menu__item"
+          {% endif %}
+                     href="{{ all_top_ups }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Top Ups</span></a>
+        </li>
+
+          <li>
+              <a {% if request.path == my_companies %} class="app-menu__item active"
+              {% else %} class="app-menu__item" {% endif %}
+                      href="{{ my_companies }}">
+                <i class="app-menu__icon fa fa-building-o"></i>
+                <span class="app-menu__label">My Companies</span></a>
+          </li>
+      </ul>
+    </aside>

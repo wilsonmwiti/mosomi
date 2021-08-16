@@ -1,0 +1,46 @@
+# cosmere
+Ip: 167.172.24.232
+Username : root
+Password: 88rf0:78&||d~6R
+
+# mediasource
+ip: 45.77.52.155
+username: root
+password
+x8=AR2+F#tusCgT{
+
+# welfare
+109.74.201.89
+Mosomi123
+
+# rental kenya
+username: root
+password: Mosomi123
+ip: 151.236.217.110
+
+
+# mpesa portal (aloise)
+username: aloise
+password: Aloise2020
+
+
+#emalify
+username: kiamasimon90@gmail.com
+password: 0717305945Sk
+
+# willinya
+$2hAt$9Rjxv3F8M$
+45.77.55.57
+ root
+
+# New server credentials
+SSH
+username: root
+password: Mosomi123
+username: roberms
+password: 8PmI1MHt0A
+MYSQL
+username: root
+password: ptD98HB78h
+http://172.105.8.78/phpmyadmin/
+

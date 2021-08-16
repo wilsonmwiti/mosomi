@@ -1,0 +1,47 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                    <th>Date Joined</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.business_name }}</td>
+                    <td>{{ client.phone_number }}</td>
+                    <td>{{ client }}</td>
+                    <td>{{ client.created_at|date:'Y-m-d' }}</td>
+                    <td>
+                        <a href="" title="Edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>
+                        <a href="" title="Approve" class="btn btn-outline-primary btn-sm"><i class="fa fa-check-square-o"></i></a>
+                        <a href="{% url 'roberms_admin:customer_edit' client.id %}" class="btn btn-sm btn-outline-success">Change Sender Id</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

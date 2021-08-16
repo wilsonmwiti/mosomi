@@ -1,0 +1,55 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+       <div class="tile">
+                   <div class="tile-title">
+
+                   </div>
+
+       <div class="row">
+           <div class="col-lg-6">
+           <div class="bs-component">
+           <div class="card border-primary">
+               <div class="card-header">
+                   <h5 class="mb-3" id="buttons">Simple SMS</h5>
+               </div>
+               <div class="card-body">
+                   <p></p>
+                   <a class="btn btn-primary" href="{% url 'School:simple_sms' %}">Continue</a>
+               </div>
+           </div>
+           </div>
+       </div>
+
+       <div class="col-lg-6">
+           <div class="card border-primary">
+               <div class="bs-component">
+                   <div class="card-header">
+                   <h5 class="mb-3" id="buttons">Personalized SMS</h5>
+                   </div>
+               <div class="card-body">
+                   <p></p>
+                   <a class="btn btn-primary" href="{% url 'School:personalized_sms_menu' %}">Continue</a>
+               </div>
+               </div>
+           </div>
+       </div>
+
+           </div>
+       </div>
+       </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Invoice Payments</h4>
+        </div>
+        <div class="col-sm-6">
+            <a href="{% url 'Invoices:add_payment' invoice.id %}" class="btn btn-outline-primary pull-right">Add Payment</a>
+            <a href="{% url 'Invoices:mark_invoice_as_payed'  invoice.id %}" class="btn btn-outline-primary pull-right">Mark As Payed</a>
+        </div>
+    </div>
+    <hr>
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.invoice.client.company_name }}</td>
+                    <td>{{ payment.amount }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

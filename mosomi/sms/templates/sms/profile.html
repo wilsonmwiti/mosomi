@@ -1,0 +1,26 @@
+{% extends 'layouts/new_base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="col-sm-12">
+<div class="tile">
+    <div class="tile-title">
+        Profile Details
+        <hr>
+    </div>
+        <div class="tile-body">
+            <p><strong class="text-primary">Email </strong>
+                {% if customer.email %} {{ customer.email }} {% else %} No details provided {% endif %}</p>
+            <p><strong class="text-primary">First Name </strong>
+                {% if customer.first_name %} {{ customer.first_name }} {% else %} No details provided {% endif %}</p>
+            <p><strong class="text-primary">Last Name </strong>
+                {% if customer.last_name %} {{ customer.last_name }} {% else %} No details provided {% endif %}</p>
+            <p><strong class="text-primary">Business Name </strong>
+                {% if customer.business_name != 'Business Name' %} {{ customer.business_name }} {% else %} No details provided {% endif %}</p>
+        <a class="btn btn-primary" href="{% url 'sms:edit_profile' %}">Edit Profile</a>
+        </div>
+</div>
+</div>
+{% endblock %}
+

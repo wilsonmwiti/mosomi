@@ -1,0 +1,47 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div class="col-sm-6">
+        <div class="tile">
+            <h3 class="tile-title">Bar Chart</h3>
+            <div class="embed-responsive embed-responsive-16by9" style="overflow-x: scroll; overflow-y: hidden;">
+                <canvas class="embed-responsive-item" id="barChartDemo" style="width: 475px; height: 200px;"></canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+{#    <p>{{ data }}</p>#}
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+var data = {
+      	labels: [{% for k,v in data.items %}"{{ k }}",{% endfor %}],
+      	datasets: [
+      		{
+      			label: "Top Ups",
+      			fillColor: "rgba(220,220,220,0.2)",
+      			strokeColor: "rgba(220,220,220,1)",
+      			pointColor: "rgba(220,220,220,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(220,220,220,1)",
+      			data: [{% for k,v in data.items %}{{ v }},{% endfor %}]
+      		}
+      	]
+      };
+
+var ctxb = $("#barChartDemo").get(0).getContext("2d");
+      var barChart = new Chart(ctxb).Bar(data);
+</script>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% load static %}
+
+<div hidden>
+    {% url 'roberms_admin:dashboard' as dashboard %}
+    {% url 'roberms_admin:clients' as clients %}
+    {% url 'roberms_admin:sales_people' as sales_people %}
+    {% url 'Invoices:invoice_clients' as invoice_clients %}
+    {% url 'roberms_admin:account_usage' as account_usage %}
+    {% url 'roberms_admin:top_ups' as top_ups %}
+    {% url 'roberms_admin:list_sales_people' as list_sales_people %}
+{#    {% url 'roberms_admin:unapproved_clients' as unapproved_clients %}#}
+</div>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <ul class="app-menu">
+        <li>
+            <a {% if request.path == dashboard %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ dashboard }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Dashboard</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == sales_people %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ sales_people }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Sales People</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == clients %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ clients }}">
+                <i class="app-menu__icon fa fa-dashboard"></i>
+                <span class="app-menu__label">Clients</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == invoice_clients %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ invoice_clients }}">
+            <i class="app-menu__icon fa fa-pie-chart"></i>
+            <span class="app-menu__label">Invoices</span></a>
+        </li>
+
+          <li>
+            <a {% if request.path == top_ups %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ top_ups }}">
+            <i class="app-menu__icon fa fa-pie-chart"></i>
+            <span class="app-menu__label">Top Ups</span></a>
+        </li>
+
+      <li>
+            <a {% if request.path == account_usage %} class="app-menu__item active"
+               {% else %}
+                      class="app-menu__item"
+               {% endif %} href="{{ account_usage }}">
+            <i class="app-menu__icon fa fa-pie-chart"></i>
+            <span class="app-menu__label">Account Usage</span></a>
+        </li>
+
+          <li>
+              <a {% if request.path == list_sales_people %} class="app-menu__item active"
+              {% else %} class="app-menu__item" {% endif %} href="{{ list_sales_people }}">
+                  <i class="app-menu__icon fa fa-hand-paper-o"></i>
+                  <span class="app-menu__label">Appointments</span></a>
+          </li>
+
+
+{#      <li>#}
+{#            <a {% if request.path == unapproved_clients %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ unapproved_clients }}">#}
+{#                <i class="app-menu__icon fa fa-dashboard"></i>#}
+{#                <span class="app-menu__label">Unapproved Clients</span></a>#}
+{#        </li>#}
+
+
+{#      <li {% if request.path == simple_sms or request.path == personalized_sms  %}#}
+{#              class="treeview is-expanded"#}
+{#          {% else %}#}
+{#              class="treeview"#}
+{#          {% endif %}>#}
+{#          <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Messaging</span><i class="treeview-indicator fa fa-angle-right"></i></a>#}
+{#          <ul class="treeview-menu">#}
+{#            <li><a {% if request.path == simple_sms %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ simple_sms }}"><i class="icon fa fa-circle-o"></i>Simple Message</a></li>#}
+{#            <li><a {% if request.path == personalized_sms %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ personalized_sms }}"><i class="icon fa fa-circle-o"></i>Personalized Message</a></li>#}
+{#          </ul>#}
+{#        </li>#}
+
+{#        <li>#}
+{#            <a {% if request.path == reports %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ reports }}">#}
+{#            <i class="app-menu__icon fa fa-pie-chart"></i>#}
+{#            <span class="app-menu__label">Reports</span></a>#}
+{#        </li>#}
+
+{#      <li>#}
+{#            <a {% if request.path == my_sms_reports %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ my_sms_reports }}">#}
+{#            <i class="app-menu__icon fa fa-pie-chart"></i>#}
+{#            <span class="app-menu__label">SMS Reports</span></a>#}
+{#        </li>#}
+
+{#        <li>#}
+{#            <a {% if request.path == credit %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ credit }}">#}
+{#            <i class="app-menu__icon fa fa-pie-chart"></i>#}
+{#            <span class="app-menu__label">Top Up</span></a>#}
+{#        </li>#}
+
+{#      <li>#}
+{#            <a {% if request.path == contacts %} class="app-menu__item active"#}
+{#               {% else %}#}
+{#                      class="app-menu__item"#}
+{#               {% endif %} href="{{ contacts }}">#}
+{#            <i class="app-menu__icon fa fa-pie-chart"></i>#}
+{#            <span class="app-menu__label">Contacts</span></a>#}
+{#        </li>#}
+      </ul>
+    </aside>

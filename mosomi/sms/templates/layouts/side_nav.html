@@ -1,0 +1,183 @@
+{% load static %}
+
+<div hidden>
+    {% url 'sms:apps' as apps %}
+    {% url 'sms:comprehensive_reports' as reports %}
+    {% url 'sms:customer_credit' as credit %}
+    {% url 'sms:customer_contacts' as contacts %}
+    {% url 'sms:send' as simple_sms %}
+    {% url 'sms:personalized_sms_menu' as personalized_sms %}
+    {% url 'sms:messages_dashboard' as messages_dashboard %}
+    {% url 'sms:my_sms_reports' as my_sms_reports %}
+    {% url 'sms:customer_till_numbers' as tills %}
+    {% url 'sms:documentation' as documentation %}
+    {% url 'sms:applications' as applications %}
+    {% url 'sms:get_tags' as get_tags %}
+    {% url 'sms:my_payments' as my_payments %}
+
+{#    {% url 'ShortCode:subs' as subs %}#}
+    {% url 'ShortCode:incoming_sms' as incoming_sms %}
+    {% url 'ShortCode:simple_sms' as short_code_simple_sms %}
+    {% url 'ShortCode:reports' as short_code_reports %}
+    {% url 'ShortCode:employers' as short_employers %}
+    {% url 'ShortCode:employees' as short_employees %}
+</div>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <ul class="app-menu">
+        {% if request.user.id == 187 %}
+            <li>
+                <a {% if request.path == short_code_simple_sms %} class="app-menu__item active"
+                {% else %}
+                                                 class="app-menu__item"
+                {% endif %} href="{{ short_code_simple_sms }}">
+                    <i class="app-menu__icon fa fa-dashboard"></i>
+                    <span class="app-menu__label">Send Sms</span></a>
+            </li>
+
+{#            <li>#}
+{#                <a {% if request.path == subs %} class="app-menu__item active"#}
+{#                {% else %}#}
+{#                                                 class="app-menu__item"#}
+{#                {% endif %} href="{{ subs }}">#}
+{#                    <i class="app-menu__icon fa fa-dashboard"></i>#}
+{#                    <span class="app-menu__label">Subs</span></a>#}
+{#            </li>#}
+
+            <li>
+                <a {% if request.path == incoming_sms %} class="app-menu__item active"
+                {% else %}
+                                                 class="app-menu__item"
+                {% endif %} href="{{ incoming_sms }}">
+                    <i class="app-menu__icon fa fa-inbox"></i>
+                    <span class="app-menu__label">Incoming Sms</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == short_employers %} class="app-menu__item active"
+                {% else %}
+                                                 class="app-menu__item"
+                {% endif %} href="{{ short_employers }}">
+                    <i class="app-menu__icon fa fa-user-secret"></i>
+                    <span class="app-menu__label">Employers</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == short_employees %} class="app-menu__item active"
+                {% else %}
+                                                 class="app-menu__item"
+                {% endif %} href="{{ short_employees }}">
+                    <i class="app-menu__icon fa fa-user"></i>
+                    <span class="app-menu__label">Employees</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == short_code_reports %} class="app-menu__item active"
+                {% else %}
+                                                 class="app-menu__item"
+                {% endif %} href="{{ short_code_reports }}">
+                    <i class="app-menu__icon fa fa-address-book"></i>
+                    <span class="app-menu__label">Report</span></a>
+            </li>
+        {% else %}
+            <li>
+                <a {% if request.path == apps %} class="app-menu__item active"
+                {% else %}
+                                                 class="app-menu__item"
+                {% endif %} href="{{ apps }}">
+                    <i class="app-menu__icon fa fa-dashboard"></i>
+                    <span class="app-menu__label">Dashboard</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == messages_dashboard %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ messages_dashboard }}">
+                    <i class="app-menu__icon fa fa-mail-forward"></i>
+                    <span class="app-menu__label">Messages</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == reports %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ reports }}">
+                    <i class="app-menu__icon fa fa-pie-chart"></i>
+                    <span class="app-menu__label">Reports</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == my_sms_reports %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ my_sms_reports }}">
+                    <i class="app-menu__icon fa fa-book"></i>
+                    <span class="app-menu__label">SMS Reports</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == credit %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ credit }}">
+                    <i class="app-menu__icon fa fa-money"></i>
+                    <span class="app-menu__label">Top Up</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == contacts %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ contacts }}">
+                    <i class="app-menu__icon fa fa-phone"></i>
+                    <span class="app-menu__label">Contacts</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == tills %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ tills }}">
+                    <i class="app-menu__icon fa fa-inbox"></i>
+                    <span class="app-menu__label">Till Messages</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == applications %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ applications }}">
+                    <i class="app-menu__icon fa fa-send"></i>
+                    <span class="app-menu__label">Sender Ids</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == get_tags %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ get_tags }}">
+                    <i class="app-menu__icon fa fa-inbox"></i>
+                    <span class="app-menu__label">Inbox</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == my_payments %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ my_payments }}">
+                    <i class="app-menu__icon fa fa-money"></i>
+                    <span class="app-menu__label">Customer Payments</span></a>
+            </li>
+
+            <li>
+                <a {% if request.path == documentation %} class="app-menu__item active"
+                {% else %}
+                      class="app-menu__item"
+                {% endif %} href="{{ documentation }}">
+                    <i class="app-menu__icon fa fa-book"></i>
+                    <span class="app-menu__label">Api</span></a>
+            </li>
+        {% endif %}
+      </ul>
+    </aside>

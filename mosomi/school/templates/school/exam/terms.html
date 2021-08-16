@@ -1,0 +1,57 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+{% load school_filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Terms</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-primary float-right flex-column text-white" href="{% url 'School:add_term' form_id %}">Add Term</a>
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Term Name</th>
+                    <th>Year</th>
+                    <th>Fee</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for term in terms %}
+                <tr>
+                    <td><a href="{% url 'School:examinations_exam' term.id|term_year_id:year form_id %}">{{ term.name }}</a></td>
+                    <td>{{ term.year }}</td>
+                    <td>{{ term.fee }}</td>
+                    <td>
+{#                        <a href="" class="btn btn-outline-primary">Edit</a>#}
+{#                        <a class="btn btn-outline-danger">Delete</a>#}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

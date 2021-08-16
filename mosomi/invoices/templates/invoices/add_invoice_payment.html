@@ -1,0 +1,33 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-sm-3">
+
+</div>
+<div class="col-sm-6">
+    <div class="tile">
+        <form action="{% url 'Invoices:add_payment' invoice.id %}" method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label>Amount</label>
+        <input type="text" name="amount" class="form-control">
+    </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+
+</div>
+
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

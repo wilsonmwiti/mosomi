@@ -1,0 +1,47 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+{% load filters %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Customer Email</th>
+                    <th>Credit Balance</th>
+                    <th>Last TopUp Date</th>
+                    <th>Last TopUp Amount</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer }}</td>
+                    <td>{{ customer.credit }}</td>
+                    <td>{{ customer.id|last_top_up_date }}</td>
+                    <td>{{ customer.id|last_top_up_amount }}</td>
+                    <td>
+{#                        <a href="" title="Edit" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>#}
+{#                        <a href="" title="Approve" class="btn btn-outline-primary btn-sm"><i class="fa fa-check-square-o"></i></a>#}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

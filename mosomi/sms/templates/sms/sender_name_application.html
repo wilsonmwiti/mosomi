@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+{#        <div class='wrapper'>#}
+{#                <h1 align="center" style="font-size: 20px;"></h1>#}
+{#                <hr>#}
+{#        <div>#}
+        <div class='details'>
+            <div class="row">
+                <div class="col-sm-8">
+
+                </div>
+                <div class="col-sm-4">
+                    <p>Date:</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+
+                </div>
+                <div class="col-sm-6">
+                    <p>To:</p>
+                    <p>The VAS/PRSP Manager,</p>
+                    <p>Safaricom,</p>
+                    <p>Nairobi, Kenya</p>
+                    <p>Dear Sir/Madam,</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>REQUEST TO CREATE SENDER ID</h4>
+                    <p>We the undersigned, hereby authorize Procom Limited to act on our behalf as Bulk SMS Providers. This authorization includes but is not limited to making request for Sender IDs, Sending Bulk SMS and sending communication to our Clients via available channels.</p>
+                    <p>We thereby request for the creation of the below sender id</p>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Sender Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ application.sender_name }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Kindly contact:</p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.phone_number }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>For any clarification regarding this request.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Sincerely,</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </body>
+</html>

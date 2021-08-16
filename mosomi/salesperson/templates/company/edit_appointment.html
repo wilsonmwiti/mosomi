@@ -1,0 +1,51 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Edit Appointment</h4>
+    <hr>
+</div>
+
+<div class="col-sm-12">
+    <form action="{% url 'salesperson:edit_appointment' appointment.id %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control"  name="description" required>{{ appointment.description }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Appointment Date</label>
+            <input class="form-control" id="demoDate" required value="{{ appointment.date_visited|date:'Y-m-d' }}" name="appointment_date" type="text" placeholder="Select Date">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-success pull-right" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>
+
+{% endblock %}
+
+{% block additional_scripts %}
+    <script>
+        $('#demoDate').datepicker({
+      	format: "yyyy-mm-dd",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+    </script>
+{% endblock %}

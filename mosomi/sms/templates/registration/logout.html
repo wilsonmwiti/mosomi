@@ -1,0 +1,15 @@
+{% extends 'sms/base.html' %}
+
+
+{% block content%}
+<h3>You have been logged out</h3>
+    <div class="border-top bt-3">
+      <small class="text-muted"> <a class="ml-2" href="{% url 'sms:login'%}">Login Again</a>
+        <br>
+   <a class="ml-2" href="{% url 'sms:sms-home'%}">Home page</a>
+
+      </small>
+
+    </div>
+
+  {% endblock content %}

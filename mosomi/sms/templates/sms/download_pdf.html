@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GENERATE REPORT</title>
+</head>
+<body>
+<div hidden>
+    {% if file_path %}
+        <p>{{ file_path }}</p>
+    <a href="../../../{{ file_path }}" id="download">Download</a>
+    {% endif %}
+</div>
+
+<script>
+    document.getElementById("download").click();
+</script>
+</body>
+</html>

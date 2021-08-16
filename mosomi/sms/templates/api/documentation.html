@@ -1,0 +1,163 @@
+{% extends 'layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+              <div class="row">
+                  <div class="col-sm-12 justify-content-center">
+                      <h3 class="tile-title">Documentation</h3>
+                      <hr>
+                  </div>
+              </div>
+            <div class="tile-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Usage Overview</h4>
+                        <hr>
+                        <p>Here is some information to help you understand the basic usage of our RESTFUL API.
+                            This Section includes information about Authentication, Making Requests, Query Parameters.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Authorization</h4>
+                        <hr>
+                        <p>Certain API calls require you to send data in a particular format as part of the API call.</p>
+                        <p>All API calls expect input in JSON format.</p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h5>Get Access Token</h5>
+                                <p>This endpoint is used to get an authorization token from the server. The token will be used to authenticate requests to protected endpoints.</p>
+                                <h6><p>POST(Get Auth Token)</p></h6>
+                                <code style="margin-left: 20px">url : "https://roberms.co.ke/sms/v1/roberms/get/access/token"</code>
+                                <h6>Parameters</h6>
+                                <ul>
+                                    <li>consumer_key</li>
+                                    <li>consumer_password</li>
+                                </ul>
+                                <h6>Sample Request</h6>
+                                <ul>
+                                    <code>{</code><br>
+                                    <code style="margin-left: 20px">"consumer_key": "email",</code><br>
+                                    <code style="margin-left: 20px">"consumer_password": "password"</code><br>
+                                    <code>}</code>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Send Simple Sms</h4>
+                        <hr>
+                        <p>To send sms, initiate a POST request to the following url ;</p>
+                        <code style="margin-left: 20px">url : "https://roberms.co.ke/sms/v1/roberms/send/simple/sms"</code>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>Headers</h6>
+                        <ul>
+                            <code>Authorization</code>
+                        </ul>
+                        <h6>Parameters</h6>
+                        <ul>
+                            <code>message</code><br>
+                            <code>phone_number</code><br>
+                            <code>sender_name</code><br>
+{#                            <li>access_code</li>#}
+                            <code>unique_identifier</code>
+                        </ul>
+                            </div>
+                            <div class="col-sm-8">
+                                <h6>Sample Format</h6>
+                                <ul>
+                            <code>body = {</code><br>
+                            <code style="margin-left: 20px">"message": "Simple Message",</code><br>
+                            <code style="margin-left: 20px">"phone_number": "",</code><br>
+                            <code style="margin-left: 20px">"sender_name": "",</code><br>
+{#                            <p>"access_code": "",</p>#}
+                            <code style="margin-left: 20px">"unique_identifier": "unique_identifier"</code><br>
+                            <code>}</code><br>
+
+                                    <code>headers = {</code><br>
+                            <code style="margin-left: 20px">"Authorization": "Token 'token here' "</code><br>
+                            <code>}</code>
+                        </ul>
+                            </div>
+{#                            <div class="col-sm-4">#}
+{#                                <ul>#}
+{#                            <code>headers = {</code><br>#}
+{#                            <code style="margin-left: 20px">"Authorization": "Token 'token here' "</code><br>#}
+{#                            <code>}</code>#}
+{#                                </ul>#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Register Urls</h4>
+                        <hr>
+                        <p>In the event that you need to receive the delivery status to messages sent through this API</p>
+                        <p>Make a POST request to url: </p>
+                        <code>https://roberms.co.ke/roberms/register/urls</code>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>Parameters</h6>
+                                <ul>
+                                    <li>delivery_url</li>
+{#                                    <li></li>#}
+                                </ul>
+                                <h6>Headers</h6>
+                                <ul>
+                                    <code>Authorization</code>
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <h6>Sample Request Format</h6>
+                                <ul>
+                                    <code>body = {</code><br>
+                                    <code style="margin-left: 20px">"delivery_url": ""</code><br>
+                                    <code>}</code><br>
+                                    <code>headers = {</code><br>
+                                    <code style="margin-left: 20px">"Authorization": "Token 'token here' "</code><br>
+                                    <code>}</code>
+                                </ul>
+                            </div>
+                            <div>
+                                <p style="font-weight: bold; margin-left: 20px">NB: The delivery_url parameter is the url where you want to receive the delivery status for messages sent</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Credit Balance</h4>
+                        <hr>
+                        <p>In the event that you need to check your remaining credit balance</p>
+                        <p>Make a GET request to url: </p>
+                        <code>https://roberms.co.ke/sms/v1/credit/balance</code>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>Headers</h6>
+                                <ul>
+                                    <code>Authorization: "Token 'token here' "</code>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+</div>
+{% endblock %}

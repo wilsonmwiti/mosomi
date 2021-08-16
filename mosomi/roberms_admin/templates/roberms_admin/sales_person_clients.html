@@ -1,0 +1,41 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                    <th>Date Joined</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td><a href="{% url 'roberms_admin:client_top_ups' client.id %}">{{ client.business_name }}</a></td>
+                    <td>{{ client.phone_number }}</td>
+                    <td>{{ client }}</td>
+                    <td>{{ client.created_at|date:'Y-m-d' }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

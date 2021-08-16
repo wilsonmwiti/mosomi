@@ -1,0 +1,82 @@
+{% extends 'adda/layouts/new_base.html' %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-title-w-btn">
+              <h3 class="title">Add Challenges</h3>
+{#              <p><a class="btn btn-primary icon-btn" href="{% url 'adda:create_challenge' %}"><i class="fa fa-plus"></i>Add Challenge</a></p>#}
+            </div>
+            <div class="tile-body">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-sm-6">
+                    <div  class=" pull-right">
+                    </div>
+                </div>
+            </div>
+
+                <form action="{% url 'adda:create_challenge' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group" hidden>
+                        <label>User</label>
+                        <input type="text" name="adda_user" value="{{ adda_user.id }}" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Challenge Title</label>
+                        <input type="text" name="title" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>County</label>
+                        <input type="text" name="county" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" name="date_start" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="date" name="date_end" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone_number" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Challenge Description</label>
+                        <textarea class="form-control" name="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary float-right">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'admin_layouts/new_base.html' %}
+{% load static %}
+{% load sales_person_filters %}
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+        <div class="tile-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Sales People</h3>
+            </div>
+            <div class="col-sm-6">
+{#                <a href="{% url 'roberms_admin:add_sales_person' %}" class="btn btn-primary pull-right">Add Sales Person</a>#}
+            </div>
+        </div>
+        <hr>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for person in people %}
+                <tr>
+                    <td><a href="{% url 'roberms_admin:sales_person_companies' person.id %}">{{ person.first_name }} {{ person.last_name }}</a></td>
+                    <td>{{ person.phone_number }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

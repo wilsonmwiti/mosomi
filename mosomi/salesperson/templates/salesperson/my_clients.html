@@ -1,0 +1,58 @@
+{% extends 'sales_layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Your Clients</h3>
+        </div>
+        <div class="col-sm-6">
+{#            <a class="btn btn-primary pull-right flex-column text-white" href="{% url 'salesperson:add_client' %}">Add Client</a>#}
+        </div>
+    </div>
+    <hr>
+
+</div>
+        <div class="tile-body">
+            <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Date Joined</th>
+{#                    <th>Actions</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td><a href="{% url 'salesperson:client_top_ups' client.id %}">{{ client.business_name }}</a></td>
+                    <td>{{ client.phone_number }}</td>
+                    <td>{{ client }}</td>
+                    <td>{{ client.created_at }}</td>
+{#                    <td>#}
+{#                        <a>Edit</a>#}
+{#                        <a>Activate</a>#}
+{#                    </td>#}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

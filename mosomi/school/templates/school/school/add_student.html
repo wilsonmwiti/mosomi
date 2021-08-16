@@ -1,0 +1,95 @@
+{% extends 'school/layouts/new_base.html' %}
+{% load static %}
+
+{% block additional_meta %}
+
+{% endblock %}
+
+{% block additional_styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="tile">
+<div class="tile-title">
+    <h4>Add Student</h4>
+    <hr>
+</div>
+<div class="col-sm-6">
+    <form class="form-group" action="{% url 'School:add_student' stream.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="first_name">
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="last_name">
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select name="gender" class="form-control">
+                <option>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="">Date of birth</label>
+            <input type="date" name="date_of_birth" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">Admission Number</label>
+            <input type="text" name="admission_number" class="form-control">
+        </div>
+
+        <div class="form-group" hidden>
+            <label>Guardian</label>
+            <input type="text" name="guardian" value="{{ guardian.id }}">
+        </div>
+
+        <div class="form-group">
+            <label>Class</label>
+            <select name="school_class" class="form-control">
+                <option>Select Student Form</option>
+                {% for f in fs %}
+                    <option value="{{ f.id }}">{{ f.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+        <label><b>Student Subjects</b></label><br>
+            {% for subject in subjects %}
+            <label>
+                <input type="checkbox" class="animated-checkbox" value="{{ subject.id }}" name="subjects">
+            {{ subject.name }}
+            </label>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" id="demoDate" type="text" name="year" placeholder="Select Date">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+</div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+    <script type="text/javascript" src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script>
+      $('#demoDate').datepicker({
+      	format: "yyyy",
+      	autoclose: true,
+      	todayHighlight: true
+      });
+</script>
+{% endblock %}
